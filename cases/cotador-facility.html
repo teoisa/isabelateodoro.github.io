@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Cotador Facility — Seguros SURA. Redesign completo de sistema de cotação de seguro de transportes e carga. Case de portfólio de Isabela Teodoro.">
+<title>Cotador Facility — Isabela Teodoro</title>
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,::after,::before{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0D0D0D;
+  --white:#F4F2ED;
+  --pure-white:#FFFFFF;
+  --gray-50:#F8F7F3;
+  --gray-100:#EBEBEB;
+  --gray-200:#D8D8D8;
+  --gray-400:#AAAAAA;
+  --gray-500:#888;
+  --gray-700:#444;
+  --red:#FA003F;
+  --grad-from:#1B2A4A;
+  --grad-to:#2C5FAA;
+  --font-serif:'Playfair Display',Georgia,serif;
+  --font-sans:'DM Sans',Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cursor{position:fixed;width:18px;height:18px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor::before{content:'✶';font-size:16px;color:var(--red);display:block;text-align:center;line-height:1}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(244,242,237,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--black)}
+.nav-back{display:flex;align-items:center;gap:.6rem;font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--black);text-decoration:none;cursor:none;transition:opacity .2s}
+.nav-back:hover{opacity:.5}
+.nav-case-title{font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500)}
+.nav-star{font-size:1.2rem;animation:starSpin 8s linear infinite;display:inline-block;color:var(--black)}
+@keyframes starSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* HERO */
+.case-hero{min-height:auto;display:flex;flex-direction:column;justify-content:space-between;padding:6rem 3rem 3rem;background:linear-gradient(135deg,var(--grad-from) 0,var(--grad-to) 100%);position:relative;overflow:hidden}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.06) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(0,0,0,.15) 0,transparent 50%);pointer-events:none}
+.hero-topbar{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:2}
+.hero-nicho{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-tipo{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-title-block{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:3rem 0}
+.case-hero h1{font-family:var(--font-serif);font-size:clamp(4.5rem,10vw,9rem);font-weight:700;line-height:.9;letter-spacing:-.03em;color:var(--pure-white)}
+.case-hero h1 em{font-style:italic;font-weight:400}
+.hero-bottombar{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;gap:3rem}
+.hero-sub{font-family:var(--font-sans);font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);max-width:500px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;flex-shrink:0;max-width:360px}
+.hero-tag{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.35);padding:.35rem 1rem;border-radius:999px;backdrop-filter:blur(4px)}
+
+/* META BAR */
+.meta-bar{background:var(--pure-white);border-bottom:1px solid var(--gray-100);padding:0 3rem;display:grid;grid-template-columns:repeat(6,1fr)}
+.meta-item{padding:1.75rem 0;border-right:1px solid var(--gray-100)}
+.meta-item:last-child{border-right:none}
+.meta-item:not(:first-child){padding-left:2rem}
+.meta-label{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.4rem}
+.meta-value{font-family:var(--font-sans);font-size:.88rem;font-weight:500;color:var(--black)}
+.meta-value.accent{color:var(--grad-from)}
+
+/* SECTIONS */
+.case-section{padding:6rem 3rem;background:var(--pure-white)}
+.case-section.off{background:var(--gray-50)}
+.section-label{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray-200)}
+.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--black);margin-bottom:2.5rem}
+.section-title em{font-style:italic}
+.body-text{font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray-700)}
+.body-text strong{font-weight:500;color:var(--black)}
+.body-text p+p{margin-top:1.25rem}
+
+/* LAYOUTS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+
+/* Imagem inline (texto esquerda + imagem direita) */
+.col-img{width:100%;border-radius:8px;display:block}
+.subsection+.subsection{margin-top:4rem;padding-top:4rem;border-top:1px solid var(--gray-100)}
+.subsection-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--black);margin-bottom:1.5rem}
+.subsection-title em{font-style:italic}
+
+/* PROCESS CARDS */
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.process-card-wrap{padding-top:24px;display:flex;flex-direction:column}
+.pc-aba{height:24px;width:80px;margin-left:20px;background:var(--gray-50);border:1px solid var(--gray-100);border-bottom:none;border-radius:10px 10px 0 0;flex-shrink:0;transition:background .25s}
+.process-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:20px;padding:0;overflow:hidden;display:flex;flex-direction:column;cursor:none;flex:1;position:relative;transition:box-shadow .3s,transform .25s,background .25s}
+.process-card-wrap:hover .pc-aba{background:var(--pure-white);border-color:var(--gray-200)}
+.process-card-wrap:hover .process-card{background:var(--pure-white);box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-3px)}
+.pc-body{padding:1.75rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1rem;flex:1;border-radius:20px}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between}
+.pc-icon-wrap{width:40px;height:40px;border:1px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--pure-white);flex-shrink:0;transition:border-color .25s,box-shadow .25s}
+.process-card-wrap:hover .pc-icon-wrap{border-color:var(--gray-400);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.pc-icon svg{width:18px;height:18px;stroke:var(--gray-700);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
+.process-card-wrap:hover .pc-icon svg{stroke:var(--black)}
+.pc-num{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--gray-200);line-height:1;transition:color .25s;letter-spacing:-.02em}
+.process-card-wrap:hover .pc-num{color:var(--gray-300)}
+.pc-title{font-family:var(--font-sans);font-size:.95rem;font-weight:600;color:var(--black);line-height:1.25}
+.pc-desc{font-family:var(--font-sans);font-size:.8rem;font-weight:300;color:var(--gray-500);line-height:1.65;flex:1}
+.pc-tools{display:flex;flex-wrap:wrap;gap:.3rem;padding-top:.85rem;margin-top:auto;border-top:1px solid var(--gray-100)}
+.pc-tool{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border:1px solid var(--gray-200);padding:.18rem .6rem;border-radius:999px;transition:border-color .2s,color .2s}
+.process-card-wrap:hover .pc-tool{border-color:var(--gray-300);color:var(--gray-500)}
+
+/* DELIVERABLES */
+.deliverables-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.deliverable-item{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:8px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.del-icon-wrap{width:36px;height:36px;border:1px solid var(--gray-200);border-radius:8px;background:var(--pure-white);display:flex;align-items:center;justify-content:center}
+.del-icon-wrap svg{width:18px;height:18px;stroke:var(--gray-500);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.del-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black)}
+.del-desc{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.55}
+
+/* IMAGE PLACEHOLDERS */
+.img-placeholder{width:100%;border-radius:6px;overflow:hidden;background:var(--gray-50);border:1px solid var(--gray-100);position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.img-placeholder.tall{aspect-ratio:16/8}
+.img-placeholder.medium{aspect-ratio:16/6}
+.ph-note{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-300);text-align:center;padding:0 2rem}
+.real-img-wrap{margin-top:3rem}
+
+/* RESULT */
+.result-section{padding:7rem 3rem;background:var(--pure-white);border-top:1px solid var(--gray-100)}
+.result-big{font-family:var(--font-serif);font-size:clamp(4rem,10vw,9rem);font-weight:700;line-height:.88;letter-spacing:-.04em;color:var(--black);margin-bottom:1rem}
+.result-accent{color:var(--grad-from)}
+.result-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+
+/* LEARNINGS */
+.learning-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:3rem;border:1px solid var(--gray-100);border-radius:8px;overflow:hidden}
+.learning-item{padding:2rem;border-right:1px solid var(--gray-100)}
+.learning-item:last-child{border-right:none}
+.learning-num{font-family:var(--font-serif);font-size:.85rem;font-style:italic;color:var(--gray-300);margin-bottom:.75rem}
+.learning-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.learning-text{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.6}
+
+/* NEXT CASE */
+.next-case{background:var(--black);padding:5rem 3rem;display:flex;align-items:center;justify-content:space-between;cursor:none;text-decoration:none;transition:opacity .2s}
+.next-case:hover{opacity:.8}
+.next-label{font-family:var(--font-sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#444;margin-bottom:.75rem}
+.next-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1}
+.next-arrow{font-size:3rem;color:#333;transition:transform .2s,color .2s}
+.next-case:hover .next-arrow{transform:translate(8px,-8px);color:var(--red)}
+
+/* FOOTER */
+footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a}
+.f-name{font-family:var(--font-sans);font-size:.82rem;font-weight:500;color:var(--white)}
+.f-copy{font-family:var(--font-sans);font-size:.72rem;color:#444}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--gray-100);margin:0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}
+.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}
+.d5{transition-delay:.4s}
+.d6{transition-delay:.48s}
+
+@media(max-width:960px){
+  nav{padding:1.25rem 1.5rem}
+  .case-hero{padding:5rem 1.5rem 2.5rem}
+  .meta-bar{grid-template-columns:repeat(3,1fr);padding:0 1.5rem}
+  .case-section{padding:4rem 1.5rem}
+  .role-cols,.two-col{grid-template-columns:1fr;gap:2.5rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .deliverables-grid{grid-template-columns:1fr}
+  .learning-grid{grid-template-columns:1fr}
+  .learning-item{border-right:none;border-bottom:1px solid var(--gray-100)}
+  .result-col{grid-template-columns:1fr}
+  .next-case{padding:3rem 1.5rem;flex-direction:column;align-items:flex-start;gap:2rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-back" href="../index.html">← Voltar</a>
+  <span class="nav-case-title">Cotador Facility</span>
+  <span class="nav-star">✶</span>
+</nav>
+
+<!-- HERO — imagem full-width -->
+<div style="margin-top:57px;border-bottom:1px solid var(--black);overflow:hidden">
+  <img
+    src="../assets/cases/cotador-facility/hero.png"
+    alt="Cotador Facility — Hero"
+    style="width:100%;display:block;max-height:90vh;object-fit:cover;object-position:center center"
+    loading="eager"
+  >
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <div class="meta-label">Cliente</div>
+    <div class="meta-value">Seguros SURA</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Setor</div>
+    <div class="meta-value">Transportes &amp; Carga</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Ano</div>
+    <div class="meta-value">2025</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Plataforma</div>
+    <div class="meta-value">Web App</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Meu papel</div>
+    <div class="meta-value">Product Designer</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Resultado</div>
+    <div class="meta-value accent">+35% resultado técnico</div>
+  </div>
+</div>
+
+<!-- 01 — OVERVIEW -->
+<section class="case-section reveal" id="overview">
+  <div class="section-label">01 — Overview</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">O ponto <em>de partida.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>O Cotador Facility é o sistema de cotação de seguros de transportes e carga da SURA Brasil — responsável por calcular apólices para corretores parceiros em todo o país. Quando o projeto chegou para o time de design, o sistema havia sido abandonado pelos parceiros por falhas críticas de usabilidade.</p>
+      <p>Para contornar o abandono, os corretores passaram a usar uma planilha Excel com VBA como solução paliativa — que, mesmo funcional, tinha experiência fragmentada, morosa, não possibilitava escalação e não atendia aos padrões do mercado. Na prática, <strong>dois sistemas coexistiam</strong>: o Facility legado e o Excel que havia virado o fluxo oficial de trabalho.</p>
+      <p>A missão era clara: redesenhar e revitalizar o cotador. Trazer a dinamicidade e o raciocínio intuitivo que os corretores encontravam no Excel — sem prejudicar a experiência e resguardando boa usabilidade. <strong>Em 5 sprints, redesenhamos do zero um sistema legado abandonado e substituímos completamente o Excel que havia virado o fluxo oficial de trabalho dos corretores.</strong></p>
+    </div>
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/cotador-facility/overview.png" alt="Visão geral do Cotador Facility" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 02 — DESAFIO -->
+<section class="case-section off reveal">
+  <div class="section-label">02 — Desafio</div>
+
+  <!-- Subsection: os sistemas -->
+  <div class="subsection">
+    <div class="role-cols" style="align-items:center">
+      <div>
+        <h2 class="section-title">Um sistema que afastava<br><em>seus próprios usuários.</em></h2>
+        <div class="body-text">
+          <p>O Excel mantinha o raciocínio e as regras de negócio atualizadas — era um fluxo intuitivo e ágil para os corretores, mesmo sendo uma solução paliativa. O desafio era substituí-lo e revitalizar o Facility: trazer essa dinamicidade à cotação, sem prejudicar a experiência.</p>
+          <p>Dois sistemas coexistindo, regras de negócio densas e distribuídas, e nenhum stakeholder capaz de articular o todo. O desafio de design era também um desafio de extração e síntese de conhecimento.</p>
+          <p><strong>Com escopo fechado e 5 sprints para entrega</strong>, o prazo era um dos maiores destaques do projeto — e determinou cada decisão de processo.</p>
+        </div>
+      </div>
+      <div>
+        <img src="../assets/cases/cotador-facility/desafio-sistemas.png" alt="Os sistemas legados do Cotador Facility" class="col-img" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Subsection: os perfis de usuários -->
+  <div class="subsection">
+    <div class="role-cols" style="align-items:center">
+      <div>
+        <h2 class="subsection-title">Múltiplos perfis,<br><em>uma única interface.</em></h2>
+        <div class="body-text">
+          <p>O sistema precisava atender perfis completamente distintos — corretores parceiros externos, gestores internos da SURA e administradores do sistema — cada um com permissões, fluxos e necessidades diferentes.</p>
+          <p><strong>Como redesenhar um sistema B2B com regras densas e múltiplos perfis de acesso</strong> de forma que os corretores voltassem a utilizá-lo — e que fosse escalável para o negócio?</p>
+        </div>
+      </div>
+      <div>
+        <img src="../assets/cases/cotador-facility/desafio-perfis.png" alt="Perfis de usuários do Cotador Facility" class="col-img" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- 03 — MEU PAPEL -->
+<section class="case-section reveal">
+  <div class="section-label">03 — Meu papel</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Design <em>end-to-end,</em><br>do discovery à entrega.</h2>
+    </div>
+    <div class="body-text">
+      <p>Conduzi todo o processo de design — do entendimento do sistema atual à entrega das interfaces de alta fidelidade. Atuei de forma autônoma, com validações contínuas com produto, engenharia e stakeholders da SURA. Estratégia, arquitetura, fluxos e telas: tudo sob minha responsabilidade.</p>
+      <p>Sem espaço para discovery formal em escopo fechado, adaptei o processo. Mapeei as duas soluções existentes em paralelo — o sistema legado e o Excel — para entender o que funcionava, o que quebrava e o que os corretores realmente precisavam.</p>
+      <p>Além dos fluxos de cotação, redesenhei os documentos gerados automaticamente (apólices, certificados) e os templates de comunicação, com <strong>UX Writing completo</strong>: labels, validações, CTAs e nomenclatura de cada etapa do sistema.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 04 — PROCESSO -->
+<section class="case-section off reveal">
+  <div class="section-label">04 — Processo</div>
+  <h2 class="section-title">Como chegamos lá.</h2>
+  <div class="process-grid">
+
+    <div class="process-card-wrap reveal d1">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="pc-num">01</span>
+          </div>
+          <div class="pc-title">Entendimento</div>
+          <div class="pc-desc">Alinhamento inicial com stakeholders para sanar dúvidas e entender o produto — decisões existentes, restrições e oportunidades.</div>
+          <div class="pc-tools"><span class="pc-tool">Stakeholders</span><span class="pc-tool">FigJam</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d2">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <span class="pc-num">02</span>
+          </div>
+          <div class="pc-title">Mapeamento as-is</div>
+          <div class="pc-desc">Registro dos fluxos dos dois sistemas atuais: análise heurística do Facility e do Excel, catalogando os principais atritos e pontos de falha.</div>
+          <div class="pc-tools"><span class="pc-tool">Análise heurística</span><span class="pc-tool">Claude AI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d3">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            </div>
+            <span class="pc-num">03</span>
+          </div>
+          <div class="pc-title">Reestruturação to-be</div>
+          <div class="pc-desc">Levantamento das novas funcionalidades e organização da arquitetura da informação — definição de perfis, permissões e fluxos futuros.</div>
+          <div class="pc-tools"><span class="pc-tool">Arquitetura de Info</span><span class="pc-tool">Figma Make</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d4">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <span class="pc-num">04</span>
+          </div>
+          <div class="pc-title">Prototipação</div>
+          <div class="pc-desc">Início da construção do novo sistema, aplicando melhorias de experiência e interface — com estados, comportamentos e regras documentados.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Hi-fi</span><span class="pc-tool">UX Writing</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d5">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="pc-num">05</span>
+          </div>
+          <div class="pc-title">Handoff</div>
+          <div class="pc-desc">Repasse da solução ao time de desenvolvimento para análise de viabilidade — cada entrega com comportamentos, estados e regras documentados.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Documentação</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d6">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <span class="pc-num">06</span>
+          </div>
+          <div class="pc-title">Validação</div>
+          <div class="pc-desc">Apresentação das novas interfaces, jornadas e fluxos de usuário para stakeholders da SURA — aprovação antes da entrega final ao dev.</div>
+          <div class="pc-tools"><span class="pc-tool">Stakeholders SURA</span><span class="pc-tool">QA</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Imagem as-is: texto à esquerda + imagem à direita -->
+  <div class="role-cols reveal d1" style="margin-top:4rem;align-items:center">
+    <div>
+      <h2 class="subsection-title">IA como <em>segundo cérebro.</em></h2>
+      <div class="body-text">
+        <p>Conduzi uma análise heurística do Facility para catalogar os principais atritos e, para extrair as regras de negócio densas do produto, usei o <strong>Claude como segundo cérebro</strong>: agentes especializados no produto me permitiram avançar no design com menos dependência de alinhamentos constantes com os stakeholders.</p>
+        <p>Com a arquitetura definida, usei o <strong>Figma Make para ideação rápida de alternativas</strong> antes de partir para alta fidelidade no Figma — cada entrega chegava ao time de desenvolvimento com comportamentos, estados e regras documentados.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/cotador-facility/processo-asis.png" alt="Mapeamento as-is dos dois sistemas" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 05 — ENTREGÁVEIS -->
+<section class="case-section reveal">
+  <div class="section-label">05 — Entregáveis</div>
+  <h2 class="section-title">O que foi produzido.</h2>
+  <div class="deliverables-grid">
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="del-title">Fluxos e arquitetura da informação</div>
+      <div class="del-desc">Mapeamento completo dos fluxos de cotação por perfil de usuário (corretor, gestor, admin) e reestruturação da arquitetura de informação do sistema.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="del-title">Documentação completa do produto</div>
+      <div class="del-desc">Regras de negócio, comportamentos de campo, treinamento de uso e documentação técnica — gerados em 2 dias com apoio de IA e entregues ao cliente junto com o sistema.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+      </div>
+      <div class="del-title">Protótipo navegável de alta fidelidade</div>
+      <div class="del-desc">Interfaces finais navegáveis no Figma, validadas com corretores parceiros antes do handoff para desenvolvimento.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="del-title">Redesign de apólices e templates de e-mail</div>
+      <div class="del-desc">Reestruturação dos documentos gerados automaticamente pelo sistema — apólices, certificados e comunicações — com hierarquia visual e linguagem clara.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="del-title">UX Writing completo</div>
+      <div class="del-desc">Nomenclatura de todas as etapas, mensagens de validação, CTAs e microcopy do sistema — revisados intencionalmente para reduzir fricção e erros.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="del-title">Suporte ao QA e go-live</div>
+      <div class="del-desc">Acompanhamento do desenvolvimento com revisões de implementação, ajustes de edge cases e validação final antes do lançamento em produção.</div>
+    </div>
+
+  </div>
+  <!-- Todas as telas — full-width -->
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/cotador-facility/entregaveis-telas.png" alt="Todas as telas do Cotador Facility" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+
+  <!-- Comunicações, documentos e copy — texto esquerda + imagem direita -->
+  <div class="role-cols reveal d2" style="margin-top:4rem;padding-top:4rem;border-top:1px solid var(--gray-100);align-items:center">
+    <div>
+      <h2 class="subsection-title">Comunicações, documentos<br><em>e UX Writing.</em></h2>
+      <div class="body-text">
+        <p>Além das telas do sistema, o escopo incluiu o redesign completo dos documentos gerados automaticamente — apólices e certificados — e dos templates de e-mail transacional.</p>
+        <p>Todo o UX Writing foi revisado intencionalmente: labels de formulário, mensagens de validação, CTAs, nomenclatura de etapas e microcopy de estados de erro — cada palavra pensada para reduzir fricção e aumentar a confiança do corretor no sistema.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/cotador-facility/entregaveis-comunicacoes.png" alt="Comunicações, documentos e trabalho de copy" class="col-img" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 06 — RESULTADO -->
+<section class="result-section reveal">
+  <div class="section-label">06 — Resultado</div>
+  <div class="result-col">
+    <div>
+      <div class="result-big">+35%<br><span class="result-accent">resultado técnico.</span></div>
+      <div class="body-text" style="margin-top:2rem">
+        <p>Desde setembro de 2025 em produção, o Cotador Facility transformou a relação dos corretores com a SURA. O sistema que era abandonado tornou-se o principal canal de geração de negócios do segmento de transportes.</p>
+        <p>O resultado técnico de 35% reflete não só a melhoria de usabilidade, mas o impacto estratégico de um design bem executado — do discovery ao código.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/cotador-facility/resultado.png" alt="Cotador Facility em produção" style="width:100%;display:block;border-radius:8px" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 07 — APRENDIZADOS -->
+<section class="case-section off reveal">
+  <div class="section-label">07 — Aprendizados</div>
+  <h2 class="section-title">O que ficou.</h2>
+  <div class="learning-grid">
+    <div class="learning-item">
+      <div class="learning-num">01</div>
+      <div class="learning-title">IA como ferramenta de discovery</div>
+      <div class="learning-text">Usar Claude para extrair regras de negócio do código legado foi um divisor de águas. Reduziu a dependência de stakeholders e acelerou o processo sem comprometer a qualidade das decisões.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">02</div>
+      <div class="learning-title">UX Writing não é um detalhe</div>
+      <div class="learning-text">Em sistemas B2B com regras densas, a nomenclatura correta de etapas e mensagens de validação é determinante para a adoção. Cada palavra passou por revisão intencional.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">03</div>
+      <div class="learning-title">Escopo fechado exige priorização rigorosa</div>
+      <div class="learning-text">Entregar em 4 sprints exigiu clareza sobre o que era essencial versus desejável. A parceria próxima com o PO foi determinante para manter o foco no que gerava mais valor.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMO CASE -->
+<a class="next-case" href="rever.html">
+  <div>
+    <div class="next-label">Próximo case</div>
+    <div class="next-title">Rever<br>— Marketplace de Transporte</div>
+  </div>
+  <div class="next-arrow">↗</div>
+</a>
+
+<footer>
+  <div class="f-name">Isabela Teodoro ✶</div>
+  <div class="f-copy">Belo Horizonte, MG · 2026</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.addEventListener('mouseleave', () => cur.style.opacity = '0');
+document.addEventListener('mouseenter', () => cur.style.opacity = '1');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

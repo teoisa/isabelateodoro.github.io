@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Rever — Marketplace de transporte de veículos. Design end-to-end com cinco personas em dois canais. Case de portfólio de Isabela Teodoro.">
+<title>Rever — Isabela Teodoro</title>
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,::after,::before{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0D0D0D;
+  --white:#F4F2ED;
+  --pure-white:#FFFFFF;
+  --gray-50:#F8F7F3;
+  --gray-100:#EBEBEB;
+  --gray-200:#D8D8D8;
+  --gray-400:#AAAAAA;
+  --gray-500:#888;
+  --gray-700:#444;
+  --red:#FA003F;
+  --grad-from:#1B4060;
+  --grad-to:#1A7A6A;
+  --font-serif:'Playfair Display',Georgia,serif;
+  --font-sans:'DM Sans',Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:18px;height:18px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor::before{content:'✶';font-size:16px;color:var(--red);display:block;text-align:center;line-height:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(244,242,237,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--black)}
+.nav-back{display:flex;align-items:center;gap:.6rem;font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--black);text-decoration:none;cursor:none;transition:opacity .2s}
+.nav-back:hover{opacity:.5}
+.nav-case-title{font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500)}
+.nav-star{font-size:1.2rem;animation:starSpin 8s linear infinite;display:inline-block;color:var(--black)}
+@keyframes starSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.case-hero{min-height:auto;display:flex;flex-direction:column;justify-content:space-between;padding:6rem 3rem 3rem;background:linear-gradient(135deg,var(--grad-from) 0,var(--grad-to) 100%);position:relative;overflow:hidden}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.06) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(0,0,0,.15) 0,transparent 50%);pointer-events:none}
+.hero-topbar{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:2}
+.hero-nicho{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-tipo{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-title-block{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:3rem 0}
+.case-hero h1{font-family:var(--font-serif);font-size:clamp(4.5rem,10vw,9rem);font-weight:700;line-height:.9;letter-spacing:-.03em;color:var(--pure-white)}
+.case-hero h1 em{font-style:italic;font-weight:400}
+.hero-bottombar{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;gap:3rem}
+.hero-sub{font-family:var(--font-sans);font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);max-width:500px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;flex-shrink:0;max-width:360px}
+.hero-tag{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.35);padding:.35rem 1rem;border-radius:999px;backdrop-filter:blur(4px)}
+.meta-bar{background:var(--pure-white);border-bottom:1px solid var(--gray-100);padding:0 3rem;display:grid;grid-template-columns:repeat(6,1fr)}
+.meta-item{padding:1.75rem 0;border-right:1px solid var(--gray-100)}
+.meta-item:last-child{border-right:none}
+.meta-item:not(:first-child){padding-left:2rem}
+.meta-label{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.4rem}
+.meta-value{font-family:var(--font-sans);font-size:.88rem;font-weight:500;color:var(--black)}
+.meta-value.accent{color:var(--grad-from)}
+.case-section{padding:6rem 3rem;background:var(--pure-white)}
+.case-section.off{background:var(--gray-50)}
+.section-label{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray-200)}
+.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--black);margin-bottom:2.5rem}
+.section-title em{font-style:italic}
+.body-text{font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray-700)}
+.body-text strong{font-weight:500;color:var(--black)}
+.body-text p+p{margin-top:1.25rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.process-card-wrap{padding-top:24px;display:flex;flex-direction:column}
+.pc-aba{height:24px;width:80px;margin-left:20px;background:var(--gray-50);border:1px solid var(--gray-100);border-bottom:none;border-radius:10px 10px 0 0;flex-shrink:0;transition:background .25s}
+.process-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:none;flex:1;transition:box-shadow .3s,transform .25s,background .25s}
+.process-card-wrap:hover .pc-aba{background:var(--pure-white);border-color:var(--gray-200)}
+.process-card-wrap:hover .process-card{background:var(--pure-white);box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-3px)}
+.pc-body{padding:1.75rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between}
+.pc-icon-wrap{width:40px;height:40px;border:1px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--pure-white);flex-shrink:0;transition:border-color .25s}
+.process-card-wrap:hover .pc-icon-wrap{border-color:var(--gray-400)}
+.pc-icon svg{width:18px;height:18px;stroke:var(--gray-700);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pc-num{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--gray-200);line-height:1;letter-spacing:-.02em}
+.pc-title{font-family:var(--font-sans);font-size:.95rem;font-weight:600;color:var(--black);line-height:1.25}
+.pc-desc{font-family:var(--font-sans);font-size:.8rem;font-weight:300;color:var(--gray-500);line-height:1.65;flex:1}
+.pc-tools{display:flex;flex-wrap:wrap;gap:.3rem;padding-top:.85rem;margin-top:auto;border-top:1px solid var(--gray-100)}
+.pc-tool{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border:1px solid var(--gray-200);padding:.18rem .6rem;border-radius:999px}
+.deliverables-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.deliverable-item{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:8px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.del-icon-wrap{width:36px;height:36px;border:1px solid var(--gray-200);border-radius:8px;background:var(--pure-white);display:flex;align-items:center;justify-content:center}
+.del-icon-wrap svg{width:18px;height:18px;stroke:var(--gray-500);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.del-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black)}
+.del-desc{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.55}
+.img-placeholder{width:100%;border-radius:6px;background:var(--gray-50);border:1px solid var(--gray-100);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.img-placeholder.tall{aspect-ratio:16/8}
+.img-placeholder.medium{aspect-ratio:16/6}
+.ph-note{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-300);text-align:center;padding:0 2rem}
+.real-img-wrap{margin-top:3rem}
+.result-section{padding:7rem 3rem;background:var(--pure-white);border-top:1px solid var(--gray-100)}
+.result-big{font-family:var(--font-serif);font-size:clamp(4rem,10vw,9rem);font-weight:700;line-height:.88;letter-spacing:-.04em;color:var(--black);margin-bottom:1rem}
+.result-accent{color:var(--grad-from)}
+.result-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.learning-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:3rem;border:1px solid var(--gray-100);border-radius:8px;overflow:hidden}
+.learning-item{padding:2rem;border-right:1px solid var(--gray-100)}
+.learning-item:last-child{border-right:none}
+.learning-num{font-family:var(--font-serif);font-size:.85rem;font-style:italic;color:var(--gray-300);margin-bottom:.75rem}
+.learning-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.learning-text{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.6}
+.next-case{background:var(--black);padding:5rem 3rem;display:flex;align-items:center;justify-content:space-between;cursor:none;text-decoration:none;transition:opacity .2s}
+.next-case:hover{opacity:.8}
+.next-label{font-family:var(--font-sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#444;margin-bottom:.75rem}
+.next-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1}
+.next-arrow{font-size:3rem;color:#333;transition:transform .2s,color .2s}
+.next-case:hover .next-arrow{transform:translate(8px,-8px);color:var(--red)}
+footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a}
+.f-name{font-family:var(--font-sans);font-size:.82rem;font-weight:500;color:var(--white)}
+.f-copy{font-family:var(--font-sans);font-size:.72rem;color:#444}
+.divider{border:none;border-top:1px solid var(--gray-100);margin:0}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+@media(max-width:960px){
+  nav{padding:1.25rem 1.5rem}
+  .case-hero{padding:5rem 1.5rem 2.5rem}
+  .meta-bar{grid-template-columns:repeat(3,1fr);padding:0 1.5rem}
+  .case-section{padding:4rem 1.5rem}
+  .role-cols,.two-col{grid-template-columns:1fr;gap:2.5rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .deliverables-grid{grid-template-columns:1fr}
+  .learning-grid{grid-template-columns:1fr}
+  .learning-item{border-right:none;border-bottom:1px solid var(--gray-100)}
+  .result-col{grid-template-columns:1fr}
+  .next-case{padding:3rem 1.5rem;flex-direction:column;align-items:flex-start;gap:2rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-back" href="../index.html">← Voltar</a>
+  <span class="nav-case-title">Rever</span>
+  <span class="nav-star">✶</span>
+</nav>
+
+<!-- HERO — imagem full-width -->
+<div style="margin-top:57px;border-bottom:1px solid var(--black);overflow:hidden">
+  <img
+    src="../assets/cases/rever/hero.png"
+    alt="Rever — Hero"
+    style="width:100%;display:block;max-height:90vh;object-fit:cover;object-position:center center"
+    loading="eager"
+  >
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <div class="meta-label">Cliente</div>
+    <div class="meta-value">Grupo SADA</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Setor</div>
+    <div class="meta-value">Logística Automotiva</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Ano</div>
+    <div class="meta-value">2025</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Plataforma</div>
+    <div class="meta-value">Mobile &amp; Web</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Meu papel</div>
+    <div class="meta-value">Product Designer</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Resultado</div>
+    <div class="meta-value accent">MVP em produção</div>
+  </div>
+</div>
+
+<!-- 01 — OVERVIEW -->
+<section class="case-section reveal" id="overview">
+  <div class="section-label">01 — Overview</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Um marketplace de logística para um mercado <em>analógico.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>O mercado de transporte de veículos no Brasil operava de forma completamente opaca — cotações por telefone, sem rastreabilidade, sem visibilidade de preço e sem ferramentas para os motoristas gerenciarem suas cargas.</p>
+      <p>O Grupo SADA identificou a oportunidade de digitalizar essa cadeia do zero: criar um marketplace especializado que funcionasse como referência de mercado e gerasse valor para todos os elos — do proprietário do veículo ao motorista autônomo.</p>
+      <p>Entrei após a fase de Discovery, assumindo um produto de alta complexidade: <strong>duas plataformas, cinco personas e regras de negócio densas</strong> envolvendo precificação, logística e backoffice operacional.</p>
+    </div>
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/rever/overview.png" alt="Visão geral da plataforma Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 02 — DESAFIO -->
+<section class="case-section off reveal">
+  <div class="section-label">02 — Desafio</div>
+  <div class="role-cols" style="align-items:center">
+    <div>
+      <h2 class="section-title">Cinco personas.<br><em>Uma coesão.</em></h2>
+      <div class="body-text">
+        <p>Como atender simultaneamente cinco personas com necessidades radicalmente diferentes — em dois canais — sem perder consistência visual, sem sacrificar a especificidade de cada jornada?</p>
+        <p>O proprietário PJ que gerencia uma frota precisa de ferramentas diferentes do motorista autônomo que aceita cargas pelo celular. Cada decisão de interface precisava ser avaliada nos cinco contextos ao mesmo tempo.</p>
+        <p>Havia ainda decisões de negócio com implicações diretas no design — como a <strong>política de privacidade financeira no repasse ao motorista</strong>, que exigiu uma solução de interface específica e cuidadosa para preservar a confiança de todos os lados.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/rever/desafio.png" alt="Desafio — Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 03 — MEU PAPEL -->
+<section class="case-section reveal">
+  <div class="section-label">03 — Meu papel</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Transformar o Discovery<br><em>em produto.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>Meu trabalho foi transformar o mapeamento de personas e jornadas existente em produto — desenhar os fluxos, prototipar as interfaces, garantir consistência visual e de usabilidade, e preparar o produto para o go-live.</p>
+      <p>Usei <strong>Claude para validar coerência das soluções</strong> em decisões que impactavam múltiplos perfis simultaneamente — especialmente nos casos onde satisfazer uma persona poderia gerar atrito em outra.</p>
+      <p>Além da construção inicial, atuei na <strong>evolução contínua do produto</strong>: novas features, discovery contínuo, apoio em testes de usabilidade, e organização da operação de acompanhamento do MVP — incluindo levantamento de KPIs e OKRs para medir a experiência e o impacto do produto após o lançamento.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 04 — PROCESSO -->
+<section class="case-section off reveal">
+  <div class="section-label">04 — Processo</div>
+  <h2 class="section-title">Do Discovery à interface.</h2>
+  <div class="process-grid">
+
+    <div class="process-card-wrap reveal d1">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="pc-num">01</span>
+          </div>
+          <div class="pc-title">Entendimento</div>
+          <div class="pc-desc">Alinhamento inicial com a equipe para sanar dúvidas e entender o produto — decisões tomadas, restrições e oportunidades mapeadas.</div>
+          <div class="pc-tools"><span class="pc-tool">FigJam</span><span class="pc-tool">Alinhamento</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d2">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            </div>
+            <span class="pc-num">02</span>
+          </div>
+          <div class="pc-title">Mapeamento to-be</div>
+          <div class="pc-desc">Registro dos fluxos da solução atual para refinamento da jornada e novas etapas — base para evolução contínua do produto.</div>
+          <div class="pc-tools"><span class="pc-tool">FigJam</span><span class="pc-tool">Jornadas to-be</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d3">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <span class="pc-num">03</span>
+          </div>
+          <div class="pc-title">Prototipação</div>
+          <div class="pc-desc">Construção do app e backoffice em paralelo: melhorias e novas features desenvolvidas de forma contínua e iterativa.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Hi-fi</span><span class="pc-tool">Navegável</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d4">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <span class="pc-num">04</span>
+          </div>
+          <div class="pc-title">Refinamento</div>
+          <div class="pc-desc">Momento de troca com o time de produto para refinar funcionalidades — ajustes de fluxo, hierarquia e comportamento antes da validação.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Review com PO</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d5">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="pc-num">05</span>
+          </div>
+          <div class="pc-title">Validação</div>
+          <div class="pc-desc">Apresentação das novas interfaces, jornadas e fluxos de usuário para stakeholders — coleta de feedback e aprovação antes da entrega ao dev.</div>
+          <div class="pc-tools"><span class="pc-tool">Testes de usabilidade</span><span class="pc-tool">Stakeholders</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d6">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <span class="pc-num">06</span>
+          </div>
+          <div class="pc-title">Estratégia do MVP</div>
+          <div class="pc-desc">Criação da estratégia de lançamento: captação de usuários, indicadores de experiência, levantamento de oportunidades e benchmarking.</div>
+          <div class="pc-tools"><span class="pc-tool">KPIs</span><span class="pc-tool">OKRs</span><span class="pc-tool">Benchmarking</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 05 — ENTREGÁVEIS -->
+<section class="case-section reveal">
+  <div class="section-label">05 — Entregáveis</div>
+  <h2 class="section-title">O que foi produzido.</h2>
+  <div class="deliverables-grid">
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+      </div>
+      <div class="del-title">Fluxos e protótipos de alta fidelidade</div>
+      <div class="del-desc">Fluxos desenhados e protótipos de alta fidelidade para o app mobile (clientes e motoristas) e plataforma backoffice web (operadores SADA).</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="del-title">Especificações para desenvolvimento</div>
+      <div class="del-desc">Especificações visuais e de interação entregues ao desenvolvimento com comportamentos documentados — reduzindo ambiguidade e retrabalho.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="del-title">Design System — fundação</div>
+      <div class="del-desc">Componentes base, elementos tokenizados e diretrizes visuais para continuidade do produto — garantindo coerência e escala nas evoluções futuras.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      </div>
+      <div class="del-title">Estratégia de go-live e captação</div>
+      <div class="del-desc">Planejamento do go-live e estratégia de captação de usuários estruturada em conjunto com o time de produto — incluindo KPIs e OKRs de experiência.</div>
+    </div>
+
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/rever/entregaveis-1.png" alt="Telas do produto Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+  <div class="real-img-wrap reveal d2">
+    <img src="../assets/cases/rever/entregaveis-2.png" alt="Telas do produto Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 06 — RESULTADO -->
+<section class="result-section reveal">
+  <div class="section-label">06 — Resultado</div>
+  <div class="result-col">
+    <div>
+      <div class="result-big">MVP<br><span class="result-accent">em produção.</span></div>
+      <div class="body-text" style="margin-top:2rem">
+        <p>O MVP cobre os cinco perfis de usuário nas duas plataformas — uma base que a SADA não tinha antes do projeto. O Design System iniciado garante que as evoluções futuras partam de uma fundação consistente.</p>
+        <p>Cinco personas atendidas com jornadas distintas e interfaces coesas em dois canais. Uma estrutura construída para escalar.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/rever/resultado.png" alt="Resultado — Rever" style="width:100%;display:block;border-radius:8px" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 07 — APRENDIZADOS -->
+<section class="case-section off reveal">
+  <div class="section-label">07 — Aprendizados</div>
+  <h2 class="section-title">O que ficou.</h2>
+  <div class="learning-grid">
+    <div class="learning-item">
+      <div class="learning-num">01</div>
+      <div class="learning-title">Entrar pós-Discovery exige leitura específica</div>
+      <div class="learning-text">Aprendi a trabalhar com autonomia reduzida sem perder protagonismo — entendendo o que foi construído e encontrando espaço de contribuição real dentro das restrições.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">02</div>
+      <div class="learning-title">Cinco personas pedem visão sistêmica constante</div>
+      <div class="learning-text">Cada decisão de interface precisava ser avaliada nos cinco contextos simultaneamente. Manter essa perspectiva foi o maior exercício do projeto.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">03</div>
+      <div class="learning-title">Design System como investimento estratégico</div>
+      <div class="learning-text">Iniciar o DS não era só sobre consistência visual — era sobre garantir que evoluções futuras partissem de uma fundação consistente. Em produtos complexos, isso é velocidade e qualidade ao mesmo tempo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMO CASE -->
+<a class="next-case" href="discovery-bsc.html">
+  <div>
+    <div class="next-label">Próximo case</div>
+    <div class="next-title">Discovery BSC<br>— Atlas Schindler</div>
+  </div>
+  <div class="next-arrow">↗</div>
+</a>
+
+<footer>
+  <div class="f-name">Isabela Teodoro ✶</div>
+  <div class="f-copy">Belo Horizonte, MG · 2026</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.addEventListener('mouseleave', () => cur.style.opacity = '0');
+document.addEventListener('mouseenter', () => cur.style.opacity = '1');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

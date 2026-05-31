@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Discovery BSC Financeiro — Atlas Schindler. Discovery end-to-end: JTBD, jornadas as-is e to-be, shadowing e soluções com IA. Case de portfólio de Isabela Teodoro.">
+<title>Discovery BSC — Atlas Schindler · Isabela Teodoro</title>
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,::after,::before{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0D0D0D;
+  --white:#F4F2ED;
+  --pure-white:#FFFFFF;
+  --gray-50:#F8F7F3;
+  --gray-100:#EBEBEB;
+  --gray-200:#D8D8D8;
+  --gray-400:#AAAAAA;
+  --gray-500:#888;
+  --gray-700:#444;
+  --red:#FA003F;
+  --grad-from:#1A2E1A;
+  --grad-to:#2A3D5A;
+  --font-serif:'Playfair Display',Georgia,serif;
+  --font-sans:'DM Sans',Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:18px;height:18px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor::before{content:'✶';font-size:16px;color:var(--red);display:block;text-align:center;line-height:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(244,242,237,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--black)}
+.nav-back{display:flex;align-items:center;gap:.6rem;font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--black);text-decoration:none;cursor:none;transition:opacity .2s}
+.nav-back:hover{opacity:.5}
+.nav-case-title{font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500)}
+.nav-star{font-size:1.2rem;animation:starSpin 8s linear infinite;display:inline-block;color:var(--black)}
+@keyframes starSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.case-hero{min-height:auto;display:flex;flex-direction:column;justify-content:space-between;padding:6rem 3rem 3rem;background:linear-gradient(135deg,var(--grad-from) 0,var(--grad-to) 100%);position:relative;overflow:hidden}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.06) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(0,0,0,.15) 0,transparent 50%);pointer-events:none}
+.hero-topbar{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:2}
+.hero-nicho,.hero-tipo{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-title-block{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:3rem 0}
+.case-hero h1{font-family:var(--font-serif);font-size:clamp(4.5rem,10vw,9rem);font-weight:700;line-height:.9;letter-spacing:-.03em;color:var(--pure-white)}
+.case-hero h1 em{font-style:italic;font-weight:400}
+.hero-bottombar{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;gap:3rem}
+.hero-sub{font-family:var(--font-sans);font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);max-width:500px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;flex-shrink:0;max-width:360px}
+.hero-tag{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.35);padding:.35rem 1rem;border-radius:999px;backdrop-filter:blur(4px)}
+.meta-bar{background:var(--pure-white);border-bottom:1px solid var(--gray-100);padding:0 3rem;display:grid;grid-template-columns:repeat(6,1fr)}
+.meta-item{padding:1.75rem 0;border-right:1px solid var(--gray-100)}
+.meta-item:last-child{border-right:none}
+.meta-item:not(:first-child){padding-left:2rem}
+.meta-label{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.4rem}
+.meta-value{font-family:var(--font-sans);font-size:.88rem;font-weight:500;color:var(--black)}
+.meta-value.accent{color:var(--grad-to)}
+.case-section{padding:6rem 3rem;background:var(--pure-white)}
+.case-section.off{background:var(--gray-50)}
+.section-label{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray-200)}
+.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--black);margin-bottom:2.5rem}
+.section-title em{font-style:italic}
+.body-text{font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray-700)}
+.body-text strong{font-weight:500;color:var(--black)}
+.body-text p+p{margin-top:1.25rem}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.process-card-wrap{padding-top:24px;display:flex;flex-direction:column}
+.pc-aba{height:24px;width:80px;margin-left:20px;background:var(--gray-50);border:1px solid var(--gray-100);border-bottom:none;border-radius:10px 10px 0 0;flex-shrink:0;transition:background .25s}
+.process-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:none;flex:1;transition:box-shadow .3s,transform .25s,background .25s}
+.process-card-wrap:hover .pc-aba{background:var(--pure-white);border-color:var(--gray-200)}
+.process-card-wrap:hover .process-card{background:var(--pure-white);box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-3px)}
+.pc-body{padding:1.75rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between}
+.pc-icon-wrap{width:40px;height:40px;border:1px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--pure-white);flex-shrink:0;transition:border-color .25s}
+.process-card-wrap:hover .pc-icon-wrap{border-color:var(--gray-400)}
+.pc-icon svg{width:18px;height:18px;stroke:var(--gray-700);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pc-num{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--gray-200);line-height:1;letter-spacing:-.02em}
+.pc-title{font-family:var(--font-sans);font-size:.95rem;font-weight:600;color:var(--black);line-height:1.25}
+.pc-desc{font-family:var(--font-sans);font-size:.8rem;font-weight:300;color:var(--gray-500);line-height:1.65;flex:1}
+.pc-tools{display:flex;flex-wrap:wrap;gap:.3rem;padding-top:.85rem;margin-top:auto;border-top:1px solid var(--gray-100)}
+.pc-tool{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border:1px solid var(--gray-200);padding:.18rem .6rem;border-radius:999px}
+.deliverables-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.deliverable-item{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:8px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.del-icon-wrap{width:36px;height:36px;border:1px solid var(--gray-200);border-radius:8px;background:var(--pure-white);display:flex;align-items:center;justify-content:center}
+.del-icon-wrap svg{width:18px;height:18px;stroke:var(--gray-500);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.del-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black)}
+.del-desc{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.55}
+.img-placeholder{width:100%;border-radius:6px;background:var(--gray-50);border:1px solid var(--gray-100);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.img-placeholder.tall{aspect-ratio:16/8}
+.img-placeholder.medium{aspect-ratio:16/6}
+.ph-note{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-300);text-align:center;padding:0 2rem}
+.real-img-wrap{margin-top:3rem}
+.subsection-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--black);margin-bottom:1.5rem}
+.subsection-title em{font-style:italic}
+.result-section{padding:7rem 3rem;background:var(--pure-white);border-top:1px solid var(--gray-100)}
+.result-big{font-family:var(--font-serif);font-size:clamp(4rem,10vw,9rem);font-weight:700;line-height:.88;letter-spacing:-.04em;color:var(--black);margin-bottom:1rem}
+.result-accent{color:var(--grad-to)}
+.result-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.learning-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:3rem;border:1px solid var(--gray-100);border-radius:8px;overflow:hidden}
+.learning-item{padding:2rem;border-right:1px solid var(--gray-100)}
+.learning-item:last-child{border-right:none}
+.learning-num{font-family:var(--font-serif);font-size:.85rem;font-style:italic;color:var(--gray-300);margin-bottom:.75rem}
+.learning-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.learning-text{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.6}
+.next-case{background:var(--black);padding:5rem 3rem;display:flex;align-items:center;justify-content:space-between;cursor:none;text-decoration:none;transition:opacity .2s}
+.next-case:hover{opacity:.8}
+.next-label{font-family:var(--font-sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#444;margin-bottom:.75rem}
+.next-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1}
+.next-arrow{font-size:3rem;color:#333;transition:transform .2s,color .2s}
+.next-case:hover .next-arrow{transform:translate(8px,-8px);color:var(--red)}
+footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a}
+.f-name{font-family:var(--font-sans);font-size:.82rem;font-weight:500;color:var(--white)}
+.f-copy{font-family:var(--font-sans);font-size:.72rem;color:#444}
+.divider{border:none;border-top:1px solid var(--gray-100);margin:0}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+@media(max-width:960px){
+  nav{padding:1.25rem 1.5rem}
+  .case-hero{padding:5rem 1.5rem 2.5rem}
+  .meta-bar{grid-template-columns:repeat(3,1fr);padding:0 1.5rem}
+  .case-section{padding:4rem 1.5rem}
+  .role-cols{grid-template-columns:1fr;gap:2.5rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .deliverables-grid{grid-template-columns:1fr}
+  .learning-grid{grid-template-columns:1fr}
+  .learning-item{border-right:none;border-bottom:1px solid var(--gray-100)}
+  .result-col{grid-template-columns:1fr}
+  .next-case{padding:3rem 1.5rem;flex-direction:column;align-items:flex-start;gap:2rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-back" href="../index.html">← Voltar</a>
+  <span class="nav-case-title">Discovery BSC Financeiro</span>
+  <span class="nav-star">✶</span>
+</nav>
+
+<!-- HERO — imagem full-width -->
+<div style="margin-top:57px;border-bottom:1px solid var(--black);overflow:hidden">
+  <img
+    src="../assets/cases/discovery-bsc/hero.png"
+    alt="Discovery BSC Financeiro — Hero"
+    style="width:100%;display:block;max-height:90vh;object-fit:cover;object-position:center center"
+    loading="eager"
+  >
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <div class="meta-label">Cliente</div>
+    <div class="meta-value">Atlas Schindler</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Setor</div>
+    <div class="meta-value">Financeiro · Enterprise</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Ano</div>
+    <div class="meta-value">2025</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Plataforma</div>
+    <div class="meta-value">Web &amp; Chatbot</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Meu papel</div>
+    <div class="meta-value">Product Designer</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Resultado</div>
+    <div class="meta-value accent">Proposta fechada · Novo cliente dti</div>
+  </div>
+</div>
+
+<!-- 01 — OVERVIEW -->
+<section class="case-section reveal" id="overview">
+  <div class="section-label">01 — Overview</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Discovery no coração financeiro de uma <em>multinacional.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>A Atlas Schindler — multinacional do setor de elevadores e escadas rolantes — identificou a necessidade de digitalizar e otimizar seus processos financeiros internos: cobrança, faturamento e tesouraria.</p>
+      <p>O desafio era complexo: múltiplos sistemas legados, times distintos com fluxos paralelos e pouca visibilidade entre as áreas. O projeto demandou um <strong>Discovery estruturado antes de qualquer linha de interface</strong>.</p>
+      <p>Meu papel foi conduzir a investigação completa — do shadowing às soluções de produto — em parceria com a equipe técnica, de produto e os stakeholders da Atlas, objetivando a identificação e mapeamento de gargalos operacionais e oportunidades de melhoria digital e automação.</p>
+    </div>
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/discovery-bsc/overview.png" alt="Discovery BSC — visão geral" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 02 — DESAFIO -->
+<section class="case-section off reveal">
+  <div class="section-label">02 — Desafio</div>
+  <div class="role-cols" style="align-items:center">
+    <div>
+      <h2 class="section-title">Invisibilidade operacional.<br><em>Decisão comprometida.</em></h2>
+      <div class="body-text">
+        <p>As áreas de cobrança, faturamento e tesouraria operavam com ferramentas distintas e sem integração. O resultado era retrabalho, dependência de comunicação informal e ausência de visibilidade consolidada para a gestão.</p>
+        <p>O primeiro passo foi entender onde estava o problema antes de propor qualquer solução. Isso exigiu imersão real nos processos: <strong>observação direta, entrevistas em profundidade</strong> e documentação rigorosa dos fluxos existentes.</p>
+        <p>Como mapear os gargalos reais de um setor financeiro corporativo — com múltiplos sistemas legados e times em silos — e propor soluções sem impor disrupção no dia a dia?</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/discovery-bsc/desafio-sistemas.png" alt="Os sistemas legados da Atlas Schindler" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 03 — MEU PAPEL -->
+<section class="case-section reveal">
+  <div class="section-label">03 — Meu papel</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Conduzir o Discovery<br><em>do início ao fim.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>Atuei como facilitadora e designer durante todo o sprint de Discovery — responsável por planejar e conduzir as sessões de investigação, documentar os achados e transformá-los em soluções concretas.</p>
+      <p>Utilizei <strong>Claude + Figma Make para gerar interfaces de alta fidelidade</strong> a partir dos fluxos mapeados — acelerando drasticamente a apresentação de soluções para validação com os stakeholders.</p>
+      <p>Conduzi também as dinâmicas com stakeholders multidisciplinares, conectando linguagem de negócio, operação e produto em um único artefato de Discovery.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 04 — PROCESSO -->
+<section class="case-section off reveal">
+  <div class="section-label">04 — Processo</div>
+  <h2 class="section-title">Discovery estruturado em nove etapas.</h2>
+  <div class="process-grid">
+
+    <div class="process-card-wrap reveal d1">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="pc-num">01</span>
+          </div>
+          <div class="pc-title">Entendimento</div>
+          <div class="pc-desc">Análise da jornada as-is, estudo prévio do material fornecido e setup de design — alinhamento inicial com a equipe do projeto.</div>
+          <div class="pc-tools"><span class="pc-tool">FigJam</span><span class="pc-tool">Setup</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d2">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="pc-num">02</span>
+          </div>
+          <div class="pc-title">Mapeamento JTBD</div>
+          <div class="pc-desc">Definição dos Jobs to be Done separados por área — cobrança, faturamento e tesouraria — com validação posterior com os times.</div>
+          <div class="pc-tools"><span class="pc-tool">JTBD</span><span class="pc-tool">FigJam</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d3">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="pc-num">03</span>
+          </div>
+          <div class="pc-title">Entrevistas</div>
+          <div class="pc-desc">Conversa com representantes das áreas: levantamento de atividades realizadas, sistemas utilizados e principais atritos do dia a dia.</div>
+          <div class="pc-tools"><span class="pc-tool">Entrevistas</span><span class="pc-tool">Roteiro</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d4">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <span class="pc-num">04</span>
+          </div>
+          <div class="pc-title">Sombra</div>
+          <div class="pc-desc">Acompanhamento das atividades em tempo real com especialistas de cada área — observação direta dos fluxos reais de trabalho.</div>
+          <div class="pc-tools"><span class="pc-tool">Shadowing</span><span class="pc-tool">Observação</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d5">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="pc-num">05</span>
+          </div>
+          <div class="pc-title">Consolidação</div>
+          <div class="pc-desc">Documentação das atividades, sistemas, riscos, handoffs e dores por área — síntese de todos os achados em artefatos estruturados.</div>
+          <div class="pc-tools"><span class="pc-tool">Documentação</span><span class="pc-tool">Jornadas as-is</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d6">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <span class="pc-num">06</span>
+          </div>
+          <div class="pc-title">Priorização</div>
+          <div class="pc-desc">Dinâmica com matriz de esforço × impacto realizada com a área de negócio — definição das iniciativas de maior valor para endereçar primeiro.</div>
+          <div class="pc-tools"><span class="pc-tool">Matriz esforço × impacto</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d1">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+            </div>
+            <span class="pc-num">07</span>
+          </div>
+          <div class="pc-title">Ideação</div>
+          <div class="pc-desc">Criação e prototipação de soluções e interfaces — geração de alternativas com Figma Make antes de partir para alta fidelidade.</div>
+          <div class="pc-tools"><span class="pc-tool">Claude AI</span><span class="pc-tool">Figma Make</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d2">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            </div>
+            <span class="pc-num">08</span>
+          </div>
+          <div class="pc-title">Definição to-be</div>
+          <div class="pc-desc">Criação de fluxogramas no Bizagi com a jornada ideal para a operação — mapeando todas as conexões entre sistemas e as novas soluções propostas.</div>
+          <div class="pc-tools"><span class="pc-tool">Bizagi</span><span class="pc-tool">Jornadas to-be</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d3">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h20v13H2z"/><path d="M8 21l4-5 4 5"/><path d="M12 16v5"/></svg>
+            </div>
+            <span class="pc-num">09</span>
+          </div>
+          <div class="pc-title">Showcase</div>
+          <div class="pc-desc">Apresentação de fechamento com aprendizados, soluções propostas e roadmap — validação final com stakeholders e time de produto.</div>
+          <div class="pc-tools"><span class="pc-tool">Apresentação</span><span class="pc-tool">Roadmap</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="real-img-wrap reveal d1" style="margin-top:3rem">
+    <img src="../assets/cases/discovery-bsc/processo.png" alt="Processo de Discovery — Atlas Schindler" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 05 — ENTREGÁVEIS -->
+<section class="case-section reveal">
+  <div class="section-label">05 — Entregáveis</div>
+  <h2 class="section-title">Do mapeamento às interfaces.</h2>
+  <div class="deliverables-grid">
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+      </div>
+      <div class="del-title">JTBD por perfil de usuário</div>
+      <div class="del-desc">Mapeamento dos Jobs to be Done para cada perfil envolvido nos processos de cobrança, faturamento e tesouraria — com dores e ganhos documentados.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="del-title">Jornadas as-is e to-be</div>
+      <div class="del-desc">Documentação do estado atual com atritos identificados e visão futura com as melhorias propostas para cada área financeira.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="del-title">Fluxogramas no Bizagi</div>
+      <div class="del-desc">Modelagem dos processos to-be nas três áreas em linguagem de negócio — cobrança, faturamento e tesouraria — prontos para validação com gestores.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="del-title">Chatbot de autoatendimento financeiro</div>
+      <div class="del-desc">Interface de chatbot para clientes consultarem status de cobrança e pagamentos de forma autônoma — gerada com Claude + Figma Make.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21l4-5 4 5"/><path d="M12 16v5"/></svg>
+      </div>
+      <div class="del-title">Dashboard de cobrança e faturamento</div>
+      <div class="del-desc">Visão consolidada para gestores acompanharem o pipeline de cobranças, inadimplência e faturamento — gerada com IA e validada com stakeholders.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="del-title">Dashboard de tesouraria</div>
+      <div class="del-desc">Visão consolidada de fluxo de caixa com previsões e posições abertas — eliminando a dependência de relatórios manuais em planilhas.</div>
+    </div>
+
+  </div>
+  <!-- Texto de contexto das soluções -->
+  <div class="body-text reveal d1" style="margin-top:3.5rem;padding-top:3.5rem;border-top:1px solid var(--gray-100)">
+    <p>As recomendações se dividiram em duas frentes. Os <strong>Quick Wins</strong> (alto impacto, baixo esforço) incluíram: dashboard de exceções para Contas a Pagar via Power BI integrado ao SAP; alertas automáticos de documentação faltante em Ordens de Serviço; e workflow de aprovação de chamados financeiros para evitar encerramentos sem validação do time de Cobrança.</p>
+    <p>As <strong>Iniciativas Estratégicas</strong> (alto impacto, alto esforço) envolvem: automação com RPA para tarefas repetitivas como extração de códigos de barra e processamento de NFs; higienização cadastral contínua integrada a um CRM central; e um motor de conciliação com Machine Learning para depósitos não identificados.</p>
+  </div>
+
+  <!-- Dashboard full-width -->
+  <div class="real-img-wrap reveal d2">
+    <img src="../assets/cases/discovery-bsc/entregaveis-dashboard.png" alt="Dashboard de cobrança e faturamento" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    <p style="font-family:var(--font-sans);font-size:.75rem;color:var(--gray-500);margin-top:.75rem;line-height:1.5">Dashboard de cobrança e faturamento — visão consolidada para gestores, gerado com Claude + Figma Make</p>
+  </div>
+
+  <!-- Chatbot: texto à esquerda + imagem à direita -->
+  <div class="role-cols reveal d1" style="margin-top:4rem;padding-top:4rem;border-top:1px solid var(--gray-100);align-items:center">
+    <div>
+      <h2 class="subsection-title">Chatbot de<br><em>autoatendimento financeiro.</em></h2>
+      <div class="body-text">
+        <p>Uma das iniciativas estratégicas foi o desenvolvimento de um chatbot para WhatsApp — canal já utilizado pelos clientes — capaz de consultar status de cobranças, confirmar dados cadastrais e acionar fluxos de atualização de forma autônoma.</p>
+        <p>A interface foi gerada com <strong>Claude + Figma Make</strong> a partir dos fluxos mapeados no Discovery, e apresentada aos stakeholders como prova de conceito navegável — demonstrando o valor da solução antes de qualquer linha de código.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/discovery-bsc/entregaveis-chatbot.png" alt="Chatbot de autoatendimento financeiro" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Fluxograma to-be: texto à esquerda + imagem à direita -->
+  <div class="role-cols reveal d1" style="margin-top:4rem;padding-top:4rem;border-top:1px solid var(--gray-100);align-items:center">
+    <div>
+      <h2 class="subsection-title">A jornada <em>to-be ideal.</em></h2>
+      <div class="body-text">
+        <p>O fluxograma no Bizagi foi o fechamento de tudo — e o artefato mais estratégico do Discovery. Ele ilustra todas as conexões entre os sistemas existentes e as novas soluções propostas, mostrando como elas se integram e como podem refletir uma operação financeira ideal.</p>
+        <p>Mais do que um diagrama, é uma visão de produto: do ponto de vista de negócio, tecnologia e experiência do usuário — comunicando o futuro da operação de forma clara para gestores, time de TI e stakeholders.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/discovery-bsc/resultado.png" alt="Fluxograma to-be — jornada ideal da operação financeira" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- 06 — RESULTADO -->
+<section class="result-section reveal">
+  <div class="section-label">06 — Resultado</div>
+  <div class="result-col">
+    <div>
+      <div class="result-big">Proposta<br><span class="result-accent">fechada.</span></div>
+      <div class="body-text" style="margin-top:2rem">
+        <p>O Discovery resultou em uma proposta concreta de produto — com artefatos, interfaces e roadmap — que viabilizou o fechamento do contrato e a entrada da Atlas Schindler na carteira da dti digital.</p>
+        <p>O fluxograma to-be no Bizagi foi o fechamento de tudo: ilustra todas as conexões entre os sistemas existentes e as novas soluções propostas, mostrando como elas se integram e como podem refletir uma operação financeira ideal — do ponto de vista de negócio, tecnologia e experiência do usuário.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/discovery-bsc/resultado.png.png" alt="Resultado — Discovery BSC Atlas Schindler" style="width:100%;display:block;border-radius:8px" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 07 — APRENDIZADOS -->
+<section class="case-section off reveal">
+  <div class="section-label">07 — Aprendizados</div>
+  <h2 class="section-title">O que ficou.</h2>
+  <div class="learning-grid">
+    <div class="learning-item">
+      <div class="learning-num">01</div>
+      <div class="learning-title">Shadowing revela o que entrevistas não alcançam</div>
+      <div class="learning-text">Observar o time de cobrança no dia a dia revelou fluxos informais e gambiarras que nenhuma entrevista isolada teria capturado. A presença física no ambiente do usuário é insubstituível.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">02</div>
+      <div class="learning-title">IA acelera ideação sem substituir o raciocínio</div>
+      <div class="learning-text">Usar Claude e Figma Make para gerar interfaces acelerou drasticamente a apresentação de soluções — mas exigiu curadoria intensa. A IA gera opções; o designer decide qual faz sentido.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">03</div>
+      <div class="learning-title">Facilitação é uma habilidade de design</div>
+      <div class="learning-text">Conduzir workshops com stakeholders multidisciplinares exigiu tanto preparo quanto qualquer entrega de interface. Saber quando escutar, sintetizar e propor é um repertório que desenvolvo ativamente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMO CASE -->
+<a class="next-case" href="timbro-agro.html">
+  <div>
+    <div class="next-label">Próximo case</div>
+    <div class="next-title">Timbro Agro<br>— Proposta Comercial</div>
+  </div>
+  <div class="next-arrow">↗</div>
+</a>
+
+<footer>
+  <div class="f-name">Isabela Teodoro ✶</div>
+  <div class="f-copy">Belo Horizonte, MG · 2026</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.addEventListener('mouseleave', () => cur.style.opacity = '0');
+document.addEventListener('mouseenter', () => cur.style.opacity = '1');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Timbro Agro — Proposta Comercial. Design completo de proposta que conquistou o contrato: benchmarking, wireframes e protótipo de alta fidelidade. Case de portfólio de Isabela Teodoro.">
+<title>Timbro Agro — Isabela Teodoro</title>
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,::after,::before{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0D0D0D;
+  --white:#F4F2ED;
+  --pure-white:#FFFFFF;
+  --gray-50:#F8F7F3;
+  --gray-100:#EBEBEB;
+  --gray-200:#D8D8D8;
+  --gray-400:#AAAAAA;
+  --gray-500:#888;
+  --gray-700:#444;
+  --red:#FA003F;
+  --grad-from:#C42B4E;
+  --grad-to:#395696;
+  --font-serif:'Playfair Display',Georgia,serif;
+  --font-sans:'DM Sans',Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:18px;height:18px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor::before{content:'✶';font-size:16px;color:var(--red);display:block;text-align:center;line-height:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(244,242,237,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--black)}
+.nav-back{display:flex;align-items:center;gap:.6rem;font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--black);text-decoration:none;cursor:none;transition:opacity .2s}
+.nav-back:hover{opacity:.5}
+.nav-case-title{font-family:var(--font-sans);font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500)}
+.nav-star{font-size:1.2rem;animation:starSpin 8s linear infinite;display:inline-block;color:var(--black)}
+@keyframes starSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.case-hero{min-height:auto;display:flex;flex-direction:column;justify-content:space-between;padding:6rem 3rem 3rem;background:linear-gradient(135deg,var(--grad-from) 0,var(--grad-to) 100%);position:relative;overflow:hidden}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.06) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(0,0,0,.15) 0,transparent 50%);pointer-events:none}
+.hero-topbar{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:2}
+.hero-nicho,.hero-tipo{font-family:var(--font-sans);font-size:.88rem;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.hero-title-block{position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:3rem 0}
+.case-hero h1{font-family:var(--font-serif);font-size:clamp(4.5rem,10vw,9rem);font-weight:700;line-height:.9;letter-spacing:-.03em;color:var(--pure-white)}
+.case-hero h1 em{font-style:italic;font-weight:400}
+.hero-bottombar{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;gap:3rem}
+.hero-sub{font-family:var(--font-sans);font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);max-width:500px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;flex-shrink:0;max-width:360px}
+.hero-tag{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.35);padding:.35rem 1rem;border-radius:999px;backdrop-filter:blur(4px)}
+.meta-bar{background:var(--pure-white);border-bottom:1px solid var(--gray-100);padding:0 3rem;display:grid;grid-template-columns:repeat(6,1fr)}
+.meta-item{padding:1.75rem 0;border-right:1px solid var(--gray-100)}
+.meta-item:last-child{border-right:none}
+.meta-item:not(:first-child){padding-left:2rem}
+.meta-label{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.4rem}
+.meta-value{font-family:var(--font-sans);font-size:.88rem;font-weight:500;color:var(--black)}
+.meta-value.accent{color:var(--grad-from)}
+.case-section{padding:6rem 3rem;background:var(--pure-white)}
+.case-section.off{background:var(--gray-50)}
+.section-label{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray-200)}
+.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--black);margin-bottom:2.5rem}
+.section-title em{font-style:italic}
+.body-text{font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray-700)}
+.body-text strong{font-weight:500;color:var(--black)}
+.body-text p+p{margin-top:1.25rem}
+.role-cols{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.process-card-wrap{padding-top:24px;display:flex;flex-direction:column}
+.pc-aba{height:24px;width:80px;margin-left:20px;background:var(--gray-50);border:1px solid var(--gray-100);border-bottom:none;border-radius:10px 10px 0 0;flex-shrink:0;transition:background .25s}
+.process-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:none;flex:1;transition:box-shadow .3s,transform .25s,background .25s}
+.process-card-wrap:hover .pc-aba{background:var(--pure-white);border-color:var(--gray-200)}
+.process-card-wrap:hover .process-card{background:var(--pure-white);box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-3px)}
+.pc-body{padding:1.75rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between}
+.pc-icon-wrap{width:40px;height:40px;border:1px solid var(--gray-200);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--pure-white);flex-shrink:0;transition:border-color .25s}
+.process-card-wrap:hover .pc-icon-wrap{border-color:var(--gray-400)}
+.pc-icon svg{width:18px;height:18px;stroke:var(--gray-700);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pc-num{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--gray-200);line-height:1;letter-spacing:-.02em}
+.pc-title{font-family:var(--font-sans);font-size:.95rem;font-weight:600;color:var(--black);line-height:1.25}
+.pc-desc{font-family:var(--font-sans);font-size:.8rem;font-weight:300;color:var(--gray-500);line-height:1.65;flex:1}
+.pc-tools{display:flex;flex-wrap:wrap;gap:.3rem;padding-top:.85rem;margin-top:auto;border-top:1px solid var(--gray-100)}
+.pc-tool{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);border:1px solid var(--gray-200);padding:.18rem .6rem;border-radius:999px}
+.deliverables-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.deliverable-item{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:8px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.del-icon-wrap{width:36px;height:36px;border:1px solid var(--gray-200);border-radius:8px;background:var(--pure-white);display:flex;align-items:center;justify-content:center}
+.del-icon-wrap svg{width:18px;height:18px;stroke:var(--gray-500);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.del-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black)}
+.del-desc{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.55}
+.img-placeholder{width:100%;border-radius:6px;background:var(--gray-50);border:1px solid var(--gray-100);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.img-placeholder.tall{aspect-ratio:16/8}
+.img-placeholder.medium{aspect-ratio:16/6}
+.ph-note{font-family:var(--font-sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-300);text-align:center;padding:0 2rem}
+.real-img-wrap{margin-top:3rem}
+.result-section{padding:7rem 3rem;background:var(--pure-white);border-top:1px solid var(--gray-100)}
+.result-big{font-family:var(--font-serif);font-size:clamp(4rem,10vw,9rem);font-weight:700;line-height:.88;letter-spacing:-.04em;color:var(--black);margin-bottom:1rem}
+.result-accent{color:var(--grad-from)}
+.result-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.learning-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:3rem;border:1px solid var(--gray-100);border-radius:8px;overflow:hidden}
+.learning-item{padding:2rem;border-right:1px solid var(--gray-100)}
+.learning-item:last-child{border-right:none}
+.learning-num{font-family:var(--font-serif);font-size:.85rem;font-style:italic;color:var(--gray-300);margin-bottom:.75rem}
+.learning-title{font-family:var(--font-sans);font-size:.92rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.learning-text{font-family:var(--font-sans);font-size:.82rem;font-weight:300;color:var(--gray-500);line-height:1.6}
+.next-case{background:var(--black);padding:5rem 3rem;display:flex;align-items:center;justify-content:space-between;cursor:none;text-decoration:none;transition:opacity .2s}
+.next-case:hover{opacity:.8}
+.next-label{font-family:var(--font-sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#444;margin-bottom:.75rem}
+.next-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1}
+.next-arrow{font-size:3rem;color:#333;transition:transform .2s,color .2s}
+.next-case:hover .next-arrow{transform:translate(8px,-8px);color:var(--red)}
+footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a}
+.f-name{font-family:var(--font-sans);font-size:.82rem;font-weight:500;color:var(--white)}
+.f-copy{font-family:var(--font-sans);font-size:.72rem;color:#444}
+.divider{border:none;border-top:1px solid var(--gray-100);margin:0}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+@media(max-width:960px){
+  nav{padding:1.25rem 1.5rem}
+  .case-hero{padding:5rem 1.5rem 2.5rem}
+  .meta-bar{grid-template-columns:repeat(3,1fr);padding:0 1.5rem}
+  .case-section{padding:4rem 1.5rem}
+  .role-cols{grid-template-columns:1fr;gap:2.5rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .deliverables-grid{grid-template-columns:1fr}
+  .learning-grid{grid-template-columns:1fr}
+  .learning-item{border-right:none;border-bottom:1px solid var(--gray-100)}
+  .result-col{grid-template-columns:1fr}
+  .next-case{padding:3rem 1.5rem;flex-direction:column;align-items:flex-start;gap:2rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-back" href="../index.html">← Voltar</a>
+  <span class="nav-case-title">Timbro Agro</span>
+  <span class="nav-star">✶</span>
+</nav>
+
+<!-- HERO — imagem full-width -->
+<div style="margin-top:57px;border-bottom:1px solid var(--black);overflow:hidden">
+  <img
+    src="../assets/cases/timbro-agro/hero.png"
+    alt="Timbro Agro — Hero"
+    style="width:100%;display:block;max-height:90vh;object-fit:cover;object-position:center center"
+    loading="eager"
+  >
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <div class="meta-label">Cliente</div>
+    <div class="meta-value">Timbro Trading</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Setor</div>
+    <div class="meta-value">Comércio Exterior</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Ano</div>
+    <div class="meta-value">2024</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Plataforma</div>
+    <div class="meta-value">Mobile App</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Meu papel</div>
+    <div class="meta-value">Product Designer</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Resultado</div>
+    <div class="meta-value accent">Contrato conquistado</div>
+  </div>
+</div>
+
+<!-- 01 — OVERVIEW -->
+<section class="case-section reveal" id="overview">
+  <div class="section-label">01 — Overview</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Uma plataforma para quem opera no limite da <em>complexidade.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>A Timbro Trading é referência no mercado de importação e exportação e identificou a necessidade de consolidar informações críticas em um aplicativo mobile — com visão executiva para gestores e clientes, controle de remessas, contratos e pagamentos.</p>
+      <p>O desafio era transformar essa oportunidade em uma <strong>proposta comercial concreta</strong>: produto definido, escopo claro e protótipo navegável que demonstrasse valor antes do primeiro sprint de desenvolvimento.</p>
+      <p>Da imersão no contexto ao protótipo navegável — benchmarking, arquitetura de informação, wireframes e apresentação ao cliente. <strong>O contrato foi conquistado, uma squad foi alocada e o app Timbro Agro está hoje publicado nas lojas — em produção, com usuários reais.</strong></p>
+    </div>
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/timbro-agro/overview.png" alt="Timbro Agro — visão geral do produto" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 02 — DESAFIO -->
+<section class="case-section off reveal">
+  <div class="section-label">02 — Desafio</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Informação dispersa.<br><em>Decisão comprometida.</em></h2>
+    </div>
+    <div class="body-text">
+      <p>A Timbro operava com informações críticas fragmentadas em sistemas distintos, sem visibilidade integrada para gestores e clientes. Decisões estratégicas eram tomadas sem dados consolidados — gerando retrabalho e falta de transparência.</p>
+      <p>O contexto era comercial, não de produto — o que trouxe restrições específicas. <strong>Não havia tempo para pesquisa extensiva com usuários</strong>, e o principal critério de sucesso era a capacidade de impressionar e convencer um cliente que ainda não era nosso.</p>
+      <p>Nesse contexto, o design precisava fazer mais do que funcionar bem — precisava comunicar competência, cuidado e aderência ao contexto do agronegócio.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 03 — MEU PAPEL -->
+<section class="case-section reveal">
+  <div class="section-label">03 — Meu papel</div>
+  <div class="role-cols">
+    <div>
+      <h2 class="section-title">Design <em>end-to-end</em><br>da proposta.</h2>
+    </div>
+    <div class="body-text">
+      <p>Fui responsável pelo design completo da proposta comercial — desde a análise de mercado até o protótipo navegável de alta fidelidade, alinhado ao brandbook da Timbro.</p>
+      <p>Trabalhei em estreita colaboração com o time comercial da dti digital, sendo a voz do design nas reuniões de alinhamento. Conduzi o mapeamento de funcionalidades, definição do escopo do MVP e criação de todos os wireframes.</p>
+      <p><strong>Apresentei ao cliente ao lado do time comercial.</strong> A clareza do produto e a qualidade do protótipo foram determinantes para a conquista do contrato.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 04 — PROCESSO -->
+<section class="case-section off reveal">
+  <div class="section-label">04 — Processo</div>
+  <h2 class="section-title">Como cheguei até o protótipo.</h2>
+  <div class="process-grid">
+
+    <div class="process-card-wrap reveal d1">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="pc-num">01</span>
+          </div>
+          <div class="pc-title">Entendimento</div>
+          <div class="pc-desc">Análise do material da Timbro com validações pontuais com a área de negócio. Imersão no contexto operacional e nas dores dos usuários.</div>
+          <div class="pc-tools"><span class="pc-tool">Desk Research</span><span class="pc-tool">FigJam</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d2">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            </div>
+            <span class="pc-num">02</span>
+          </div>
+          <div class="pc-title">Mapa mental</div>
+          <div class="pc-desc">Definição da arquitetura de informação e construção do golden path — o caminho principal que o usuário percorre na plataforma.</div>
+          <div class="pc-tools"><span class="pc-tool">Miro</span><span class="pc-tool">Arquitetura de Info</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d3">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <span class="pc-num">03</span>
+          </div>
+          <div class="pc-title">Benchmarking</div>
+          <div class="pc-desc">Estudo de cases por feature para construção da solução. Análise de plataformas de comércio exterior e gestão logística do agronegócio.</div>
+          <div class="pc-tools"><span class="pc-tool">Análise competitiva</span><span class="pc-tool">Figma</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d4">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <span class="pc-num">04</span>
+          </div>
+          <div class="pc-title">Wireframes</div>
+          <div class="pc-desc">Protótipos de média fidelidade para validações pontuais — home executivo, monitoramento financeiro, gestão de entregas e contratos.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Mid-fi</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d5">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <span class="pc-num">05</span>
+          </div>
+          <div class="pc-title">Alta Fidelidade</div>
+          <div class="pc-desc">Interfaces completas e navegáveis, alinhadas ao brandbook da Timbro. Escolhas tipográficas, paleta e micro-interações que comunicam qualidade.</div>
+          <div class="pc-tools"><span class="pc-tool">Figma</span><span class="pc-tool">Hi-fi</span><span class="pc-tool">Navegável</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-card-wrap reveal d6">
+      <div class="pc-aba"></div>
+      <div class="process-card">
+        <div class="pc-body">
+          <div class="pc-top">
+            <div class="pc-icon-wrap pc-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h20v13H2z"/><path d="M8 21l4-5 4 5"/><path d="M12 16v5"/></svg>
+            </div>
+            <span class="pc-num">06</span>
+          </div>
+          <div class="pc-title">Apresentação</div>
+          <div class="pc-desc">Apresentação final ao cliente para aprovação e fechamento — conduzida junto ao time comercial da dti digital.</div>
+          <div class="pc-tools"><span class="pc-tool">Pitch</span><span class="pc-tool">Proposta comercial</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="real-img-wrap reveal d1" style="margin-top:3rem">
+    <img src="../assets/cases/timbro-agro/wireframes.png" alt="Evolução do wireframe ao protótipo" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 05 — ENTREGÁVEIS -->
+<section class="case-section reveal">
+  <div class="section-label">05 — Entregáveis</div>
+  <h2 class="section-title">O que foi produzido.</h2>
+  <div class="deliverables-grid">
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="del-title">Análise de mercado e benchmarking</div>
+      <div class="del-desc">Mapeamento de plataformas similares no mercado de comércio exterior, identificando oportunidades de diferenciação para o Timbro Agro.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="del-title">Escopo do MVP</div>
+      <div class="del-desc">Levantamento e priorização de funcionalidades com visão executiva interna e externa, integração com TTManager e permissionamento por perfil.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+      </div>
+      <div class="del-title">Wireframes — 5 fluxos completos</div>
+      <div class="del-desc">Esboços estruturais de todos os fluxos críticos: home executivo, monitoramento financeiro, gestão de entregas, negociação e consulta de contratos.</div>
+    </div>
+
+    <div class="deliverable-item">
+      <div class="del-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+      </div>
+      <div class="del-title">Protótipo navegável de alta fidelidade</div>
+      <div class="del-desc">Protótipo completo no Figma, navegável e interativo, alinhado ao brandbook da Timbro. Apresentado ao cliente junto ao time comercial da dti digital.</div>
+    </div>
+
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/timbro-agro/prototipo.png" alt="Protótipo de alta fidelidade — Timbro Agro" style="width:100%;border-radius:8px;display:block" loading="lazy">
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 06 — RESULTADO -->
+<section class="result-section reveal">
+  <div class="section-label">06 — Resultado</div>
+  <div class="result-col">
+    <div>
+      <div class="result-big">Contrato<br><span class="result-accent">conquistado.</span></div>
+      <div class="body-text" style="margin-top:2rem">
+        <p>A proposta foi apresentada ao cliente junto ao time comercial da dti digital. A clareza do produto, a qualidade do protótipo navegável e a visão estratégica do MVP foram decisivos para a conquista do contrato.</p>
+        <p>Com o contrato firmado, uma squad foi alocada e o Timbro Agro foi desenvolvido e lançado. <strong>O app está publicado nas lojas — App Store e Google Play — em produção, com usuários reais.</strong> Um novo cliente entrou na carteira da dti digital.</p>
+      </div>
+    </div>
+    <div>
+      <img src="../assets/cases/timbro-agro/resultado.png" alt="Apresentação ao cliente — Timbro Agro" style="width:100%;display:block;border-radius:8px" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 07 — APRENDIZADOS -->
+<section class="case-section off reveal">
+  <div class="section-label">07 — Aprendizados</div>
+  <h2 class="section-title">O que ficou.</h2>
+  <div class="learning-grid">
+    <div class="learning-item">
+      <div class="learning-num">01</div>
+      <div class="learning-title">Design como argumento comercial</div>
+      <div class="learning-text">Um protótipo navegável bem feito comunica produto, capacidade técnica e visão estratégica ao mesmo tempo. Entendi que o design pode ser o fator decisivo em uma negociação.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">02</div>
+      <div class="learning-title">Velocidade com qualidade</div>
+      <div class="learning-text">Trabalhei dentro de um prazo comercial apertado para entregar wireframes e protótipo de alta fidelidade. Aprendi a priorizar o que comunica valor sem comprometer a coerência.</div>
+    </div>
+    <div class="learning-item">
+      <div class="learning-num">03</div>
+      <div class="learning-title">Colaboração cross-funcional</div>
+      <div class="learning-text">Apresentar ao lado do time comercial exige alinhar linguagem: o design precisa falar de negócio, não só de interface. Essa postura de tradução foi essencial para a conquista.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMO CASE -->
+<a class="next-case" href="cotador-facility.html">
+  <div>
+    <div class="next-label">Próximo case</div>
+    <div class="next-title">Cotador Facility<br>— Seguros SURA</div>
+  </div>
+  <div class="next-arrow">↗</div>
+</a>
+
+<footer>
+  <div class="f-name">Isabela Teodoro ✶</div>
+  <div class="f-copy">Belo Horizonte, MG · 2026</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.addEventListener('mouseleave', () => cur.style.opacity = '0');
+document.addEventListener('mouseenter', () => cur.style.opacity = '1');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
