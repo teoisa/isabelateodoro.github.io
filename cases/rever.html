@@ -60,6 +60,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .section-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray-200)}
 .section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.25rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--black);margin-bottom:2.5rem}
 .section-title em{font-style:italic}
+.subsection-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--black);margin-bottom:1.5rem}
+.subsection-title em{font-style:italic}
 .body-text{font-family:var(--font-sans);font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray-700)}
 .body-text strong{font-weight:500;color:var(--black)}
 .body-text p+p{margin-top:1.25rem}
@@ -188,7 +190,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
     </div>
     <div class="body-text">
       <p>O mercado de transporte de veículos no Brasil operava de forma completamente opaca: cotações por telefone, sem rastreabilidade e sem visibilidade de preço. Nenhum concorrente entregava cotação instantânea — o tempo médio do mercado variava entre 20 minutos e 24 horas.</p>
-      <p>O Grupo SADA identificou a oportunidade de digitalizar essa cadeia do zero com um serviço porta a porta real: o cliente solicita a coleta no domicílio de origem e recebe o veículo no destino. Internamente, a jornada Casa→Casa combina três trechos — dois urbanos com motoristas terceiros e um trecho fixo interedstadual — precificados e operados de forma integrada.</p>
+      <p>O Grupo SADA identificou a oportunidade de digitalizar essa cadeia do zero com um serviço porta a porta real: o cliente solicita a coleta no domicílio de origem e recebe o veículo no destino, com rastreamento, precificação transparente e operação completamente integrada.</p>
       <p>Entrei após a fase de Discovery, assumindo um produto de alta complexidade: <strong>três ativos digitais, cinco personas e regras de negócio densas</strong> envolvendo precificação dinâmica, logística e controle operacional interno.</p>
     </div>
   </div>
@@ -206,8 +208,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
     <div>
       <h2 class="section-title">Cinco personas.<br><em>Uma coesão.</em></h2>
       <div class="body-text">
-        <p>Como atender simultaneamente cinco personas com necessidades radicalmente diferentes, em canais distintos, sem perder consistência visual e sem sacrificar a especificidade de cada jornada? Ana, cliente PF, quer rapidez e rastreamento. Roberto, o PJ, precisa de controle financeiro e gestão de múltiplos veículos. José, motorista autônomo, quer oportunidades de carga constantes e rota otimizada. Márcia, gerente de frota, precisa de visão consolidada da operação. Luiza, operadora SADA, precisa de visibilidade total e ferramentas para tratar ocorrências.</p>
-        <p>Cada decisão de interface precisava ser avaliada nos cinco contextos ao mesmo tempo — e havia ainda decisões de negócio com impacto direto no design: <strong>o motorista não pode ver o valor total cobrado ao cliente</strong>, apenas seu ganho na corrida. Essa restrição de privacidade financeira exigiu uma solução de interface específica para preservar a confiança dos dois lados sem gerar ambiguidade.</p>
+        <p>Como atender cinco perfis com necessidades radicalmente distintas — cliente pessoa física, cliente pessoa jurídica, motorista autônomo, transportadora e operação interna — em canais diferentes, sem perder consistência visual nem sacrificar a especificidade de cada jornada? Cada decisão de interface precisava ser avaliada em múltiplos contextos ao mesmo tempo.</p>
       </div>
     </div>
     <div>
@@ -228,7 +229,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
     <div class="body-text">
       <p>Meu trabalho foi transformar o mapeamento de personas e jornadas existente em produto: desenhar os fluxos, prototipar as interfaces dos três ativos digitais, garantir consistência visual entre canais e preparar o produto para o go-live.</p>
       <p>Usei <strong>Claude para validar coerência das soluções</strong> em decisões que impactavam múltiplos perfis simultaneamente, especialmente nos casos onde satisfazer uma persona poderia gerar atrito em outra. A decisão sobre privacidade de precificação, por exemplo, passou por várias iterações de interface antes de chegar numa solução que funcionasse para todos os lados.</p>
-      <p>Além da construção inicial, atuei na <strong>evolução contínua do produto</strong> e na definição da estratégia de lançamento: recomendação de MVP faseado priorizando clientes PJ e transportadoras antes de PF, levantamento de KPIs e OKRs de experiência, e estruturação do processo de acompanhamento pós-lançamento.</p>
+      <p>Além da construção inicial, atuei na <strong>evolução contínua do produto</strong> e na definição da estratégia de lançamento: recomendação de MVP faseado priorizando clientes pessoa jurídica e transportadoras antes de pessoa física, levantamento de KPIs e OKRs de experiência, e estruturação do processo de acompanhamento pós-lançamento.</p>
     </div>
   </div>
 </section>
@@ -392,7 +393,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
       <h2 class="subsection-title">Operação visível,<br><em>decisão rápida.</em></h2>
     </div>
     <div class="body-text">
-      <p>A plataforma web foi desenhada para Luiza e Ana Clara, analistas de operações da SADA: responsáveis por acompanhar todos os transportes em tempo real, atribuir motoristas manualmente quando necessário, tratar ocorrências e garantir que nenhuma solicitação fique sem resposta.</p>
+      <p>A plataforma web foi desenhada para a equipe de operações da SADA: responsável por acompanhar todos os transportes em tempo real, atribuir motoristas manualmente quando necessário, tratar ocorrências e garantir que nenhuma solicitação fique sem resposta.</p>
       <p>O backoffice centraliza <strong>gestão de solicitações, controle de pagamentos, dashboard operacional em tempo real e um sistema de alertas automatizados</strong> — notificando operadores e motoristas em caso de atraso ou janela de tempo crítica. Uma interface densa em dados, estruturada para decisão rápida em cenários de alta pressão operacional.</p>
     </div>
   </div>
@@ -405,7 +406,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
       <h2 class="subsection-title">Uma estrutura.<br><em>Cinco jornadas.</em></h2>
     </div>
     <div class="body-text">
-      <p>O app concentra os perfis de <strong>pessoa física, pessoa jurídica, motorista autônomo, transportadora e balcão</strong>. Do lado do cliente, Ana (PF) contrata um transporte avulso enquanto Roberto (PJ) gerencia múltiplos veículos e acompanha faturas. Do lado do motorista, José aceita cargas próximas à sua rota enquanto Márcia distribui corridas para toda a sua frota.</p>
+      <p>O app concentra os perfis de <strong>pessoa física, pessoa jurídica, motorista autônomo, transportadora e balcão</strong>. Do lado do cliente, a pessoa física contrata um transporte avulso enquanto o cliente pessoa jurídica gerencia múltiplos veículos e acompanha faturas. Do lado do motorista, o autônomo aceita cargas próximas à sua rota enquanto a transportadora distribui corridas para toda a frota.</p>
       <p>Apesar da diversidade de contextos, o app segue uma única estrutura de navegação e identidade visual. O desafio de design foi garantir que cada perfil encontrasse exatamente o que precisa, sem que a interface parecesse genérica para nenhum deles — e sem multiplicar a complexidade de manutenção do produto.</p>
     </div>
   </div>
