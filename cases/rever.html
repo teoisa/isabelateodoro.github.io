@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Rever — Marketplace de transporte de veículos. Design end-to-end com cinco personas em dois canais. Case de portfólio de Isabela Teodoro.">
+<meta name="description" content="Rever — Marketplace de transporte de veículos. Design end-to-end com cinco personas em três plataformas. Case de portfólio de Isabela Teodoro.">
 <title>Rever — Isabela Teodoro</title>
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -204,16 +204,16 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
 <!-- 02 — DESAFIO -->
 <section class="case-section off reveal">
   <div class="section-label">02 — Desafio</div>
-  <div class="role-cols" style="align-items:center">
+  <div class="role-cols">
     <div>
       <h2 class="section-title">Cinco personas.<br><em>Uma coesão.</em></h2>
-      <div class="body-text">
-        <p>Como atender cinco perfis com necessidades radicalmente distintas — cliente pessoa física, cliente pessoa jurídica, motorista autônomo, transportadora e operação interna — em canais diferentes, sem perder consistência visual nem sacrificar a especificidade de cada jornada? Cada decisão de interface precisava ser avaliada em múltiplos contextos ao mesmo tempo.</p>
-      </div>
     </div>
-    <div>
-      <img src="../assets/cases/rever/desafio.png" alt="Desafio — Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
+    <div class="body-text">
+      <p>Como atender cinco perfis com necessidades radicalmente distintas — cliente pessoa física, cliente pessoa jurídica, operador de balcão, operador de backoffice e motorista — em canais diferentes, sem perder consistência visual nem sacrificar a especificidade de cada jornada? Cada decisão de interface precisava ser avaliada em múltiplos contextos ao mesmo tempo.</p>
     </div>
+  </div>
+  <div class="real-img-wrap reveal d1">
+    <img src="../assets/cases/rever/desafio.png" alt="Desafio — Rever" style="width:100%;border-radius:8px;display:block" loading="lazy">
   </div>
 </section>
 
@@ -229,7 +229,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
     <div class="body-text">
       <p>Meu trabalho foi transformar o mapeamento de personas e jornadas existente em produto: desenhar os fluxos, prototipar as interfaces dos três ativos digitais, garantir consistência visual entre canais e preparar o produto para o go-live.</p>
       <p>Usei <strong>Claude para validar coerência das soluções</strong> em decisões que impactavam múltiplos perfis simultaneamente, especialmente nos casos onde satisfazer uma persona poderia gerar atrito em outra. A decisão sobre privacidade de precificação, por exemplo, passou por várias iterações de interface antes de chegar numa solução que funcionasse para todos os lados.</p>
-      <p>Além da construção inicial, atuei na <strong>evolução contínua do produto</strong> e na definição da estratégia de lançamento: recomendação de MVP faseado priorizando clientes pessoa jurídica e transportadoras antes de pessoa física, levantamento de KPIs e OKRs de experiência, e estruturação do processo de acompanhamento pós-lançamento.</p>
+      <p>Além da construção inicial, atuei na <strong>evolução contínua do produto</strong> e na definição da estratégia de lançamento: recomendação de MVP faseado priorizando clientes pessoa jurídica e operadores antes de pessoa física, levantamento de KPIs e OKRs de experiência, e estruturação do processo de acompanhamento pós-lançamento.</p>
     </div>
   </div>
 </section>
@@ -360,7 +360,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
         <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
       </div>
       <div class="del-title">Fluxos e protótipos de alta fidelidade</div>
-      <div class="del-desc">Três ativos digitais prototipados: app mobile para clientes (PF e PJ), app para motoristas e transportadoras, e plataforma backoffice web para a operação SADA.</div>
+      <div class="del-desc">Três ativos digitais prototipados: app mobile para clientes (pessoa física e pessoa jurídica) e motoristas, interface de balcão para recebimento e vistoria de veículos nos pátios, e plataforma web de backoffice para controle operacional da SADA.</div>
     </div>
 
     <div class="deliverable-item">
@@ -384,7 +384,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
         <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
       </div>
       <div class="del-title">Estratégia de go-live e captação</div>
-      <div class="del-desc">Recomendação de lançamento faseado: clientes PJ e transportadoras como público inicial, expandindo para PF na segunda fase. KPIs e OKRs de experiência definidos para medir impacto pós-lançamento.</div>
+      <div class="del-desc">Recomendação de lançamento faseado: clientes pessoa jurídica e operadores como público inicial, expandindo para pessoa física na segunda fase. KPIs e OKRs de experiência definidos para medir impacto pós-lançamento.</div>
     </div>
 
   </div>
@@ -393,8 +393,8 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
       <h2 class="subsection-title">Operação visível,<br><em>decisão rápida.</em></h2>
     </div>
     <div class="body-text">
-      <p>A plataforma web foi desenhada para a equipe de operações da SADA: responsável por acompanhar todos os transportes em tempo real, atribuir motoristas manualmente quando necessário, tratar ocorrências e garantir que nenhuma solicitação fique sem resposta.</p>
-      <p>O backoffice centraliza <strong>gestão de solicitações, controle de pagamentos, dashboard operacional em tempo real e um sistema de alertas automatizados</strong> — notificando operadores e motoristas em caso de atraso ou janela de tempo crítica. Uma interface densa em dados, estruturada para decisão rápida em cenários de alta pressão operacional.</p>
+      <p>A plataforma web foi desenhada para dois perfis operacionais distintos. O <strong>operador de balcão</strong> atua nos pátios SADA, responsável pela vistoria e recebimento físico dos veículos — sua interface precisa ser ágil e funcional no contexto presencial. O <strong>operador de backoffice</strong> tem visibilidade de toda a operação: acompanha transportes em tempo real, atribui motoristas, trata ocorrências e garante que nenhuma solicitação fique sem resposta.</p>
+      <p>O backoffice centraliza gestão de solicitações, controle de pagamentos, dashboard operacional em tempo real e um sistema de alertas automatizados. Uma interface densa em dados, estruturada para decisão rápida em cenários de alta pressão operacional.</p>
     </div>
   </div>
   <div class="real-img-wrap reveal d1">
@@ -406,7 +406,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
       <h2 class="subsection-title">Uma estrutura.<br><em>Cinco jornadas.</em></h2>
     </div>
     <div class="body-text">
-      <p>O app concentra os perfis de <strong>pessoa física, pessoa jurídica, motorista autônomo, transportadora e balcão</strong>. Do lado do cliente, a pessoa física contrata um transporte avulso enquanto o cliente pessoa jurídica gerencia múltiplos veículos e acompanha faturas. Do lado do motorista, o autônomo aceita cargas próximas à sua rota enquanto a transportadora distribui corridas para toda a frota.</p>
+      <p>O app atende clientes <strong>pessoa física e pessoa jurídica</strong>, além dos motoristas — que podem ser autônomos terceirizados, com funcionamento similar a um aplicativo de corridas, ou motoristas parceiros SADA com vínculo direto. Cada perfil tem jornadas e permissões específicas, com fluxos adaptados ao seu contexto de uso.</p>
       <p>Apesar da diversidade de contextos, o app segue uma única estrutura de navegação e identidade visual. O desafio de design foi garantir que cada perfil encontrasse exatamente o que precisa, sem que a interface parecesse genérica para nenhum deles — e sem multiplicar a complexidade de manutenção do produto.</p>
     </div>
   </div>
@@ -428,7 +428,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
       <div class="result-big">MVP<br><span class="result-accent">em produção.</span></div>
       <div class="body-text" style="margin-top:2rem">
         <p>O MVP entregou o que o mercado não tinha: cotação instantânea e automatizada, serviço porta a porta real e três ativos digitais integrados cobrindo todos os lados da operação. Uma base que o Grupo SADA simplesmente não tinha antes do projeto.</p>
-        <p>Cinco personas atendidas com jornadas específicas e interfaces coesas em três plataformas. O Design System iniciado garante que as evoluções futuras — rastreamento em tempo real, vistoria digital, gestão avançada de frota — partam de uma fundação consistente e escalável.</p>
+        <p>Cinco personas atendidas com jornadas específicas e interfaces coesas: clientes pessoa física e pessoa jurídica, operador de balcão, operador de backoffice e motorista. O Design System iniciado garante que as evoluções futuras — rastreamento em tempo real, vistoria digital avançada, gestão de frota — partam de uma fundação consistente e escalável.</p>
       </div>
     </div>
     <div>
@@ -457,7 +457,7 @@ footer{background:var(--black);padding:1.5rem 3rem;display:flex;justify-content:
     <div class="learning-item">
       <div class="learning-num">03</div>
       <div class="learning-title">Design System como investimento estratégico</div>
-      <div class="learning-text">Iniciar o DS não era só sobre consistência visual: era sobre garantir que evoluções futuras partissem de uma fundação consistente. Em produtos complexos, isso é velocidade e qualidade ao mesmo tempo.</div>
+      <div class="learning-text">Iniciar o DS não era só sobre consistência visual — era sobre não ter que refazer tudo a cada nova feature. Em produtos com essa escala de perfis e canais, isso é o que separa crescimento de retrabalho.</div>
     </div>
     <div class="learning-item">
       <div class="learning-num">04</div>
