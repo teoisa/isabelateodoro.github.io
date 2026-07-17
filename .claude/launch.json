@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "boleto-chatbot",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "prototipo-boleto-whatsapp", "-l", "4173"],
+      "port": 4173
+    }
+  ]
+}
