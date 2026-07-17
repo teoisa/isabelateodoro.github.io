@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protótipo — Chatbot WhatsApp | Pagamento de boleto</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="stage">
+
+    <!-- Tag de cenário: fins de apresentação/entrevista. Clique para recolher
+         (fica só um pontinho no canto) se quiser gravar um vídeo mais "limpo". -->
+    <button id="scenario-tag" class="scenario-tag" type="button" title="Clique para ocultar/mostrar">
+      <span id="scenario-label">Caminho feliz</span>
+    </button>
+
+    <div class="phone">
+      <div class="phone-notch"></div>
+
+      <div class="phone-screen">
+
+        <header class="chat-header">
+          <div class="chat-header-left">
+            <span class="icon-btn back-btn" aria-hidden="true">&#8592;</span>
+            <div class="avatar">HC</div>
+            <div class="chat-header-info">
+              <div class="chat-name">Health Care</div>
+              <div class="chat-status"><span class="status-dot"></span>online</div>
+            </div>
+          </div>
+          <button id="restart-btn" class="icon-btn restart-btn" type="button" title="Reiniciar conversa">&#8635;</button>
+        </header>
+
+        <main id="chat-log" class="chat-log"></main>
+
+        <div id="quick-replies" class="quick-replies" aria-live="polite"></div>
+
+        <footer class="chat-input-bar">
+          <span class="icon-btn" aria-hidden="true">&#128512;</span>
+          <input id="chat-text-input" type="text" placeholder="Digite uma mensagem" autocomplete="off">
+          <button id="send-btn" class="icon-btn send-btn" type="button" title="Enviar">&#10148;</button>
+        </footer>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="conversationFlow.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
