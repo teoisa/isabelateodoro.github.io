@@ -74,7 +74,7 @@ var cpfInputConfig = {
   invalidNext: 'cpf_invalido',
   invalidMax: 3,
   invalidMaxNext: 'transfer_agent',
-  next: 'ask_method'
+  next: 'cpf_valido'
 };
 
 window.conversationFlow = {
@@ -108,7 +108,7 @@ window.conversationFlow = {
 
   // Usada em toda transferência humana, manual ou automática (após 3
   // tentativas de erro).
-  transferMessage: 'Vou te transferir para um atendente. Em instantes, alguém continua o atendimento com você.',
+  transferMessage: 'Vou te transferir para um atendente. Em instantes, alguém dará continuidade ao seu atendimento.',
 
   startNode: 'greeting',
 
@@ -147,10 +147,21 @@ window.conversationFlow = {
 
     cliente_reconhecido: {
       // N1.3a do documento de fluxo — cliente já identificado (login
-      // implícito via WhatsApp cadastrado).
+      // implícito via WhatsApp cadastrado) via atalho de demonstração
+      // "11111111111".
       scenario: 'Caminho feliz',
       messages: [
         { text: 'Bem-vindo de volta, {nomeCliente}. Já localizei seu cadastro.' }
+      ],
+      next: 'ask_method'
+    },
+
+    cpf_valido: {
+      // Reconhecimento do cliente após um CPF válido (11 dígitos) — saúda
+      // pelo nome antes de seguir para a captura do boleto.
+      scenario: 'Caminho feliz',
+      messages: [
+        { text: 'Olá, {nomeCliente}.' }
       ],
       next: 'ask_method'
     },
@@ -237,7 +248,7 @@ window.conversationFlow = {
     manual_input: {
       scenario: 'Caminho feliz',
       messages: [
-        { text: 'Você pode digitar o código de barras aos poucos, em blocos, sem pressa.' }
+        { text: 'Você pode digitar o código de barras sem pressa. Ao digitar, confira os números em blocos de cinco para não se confundir.' }
       ],
       input: {
         placeholder: 'Digite o código de barras',
@@ -302,12 +313,13 @@ window.conversationFlow = {
     },
 
     error_duplicado: {
+      // Fim do fluxo (nada a pagar): oferece voltar ao menu principal.
       scenario: 'Erro: boleto já pago',
       messages: [
         { text: 'Esse boleto já consta como pago. Você não precisa fazer mais nada.' }
       ],
       options: [
-        { label: 'Voltar ao menu', next: 'greeting' }
+        { label: 'Voltar ao menu principal', next: 'greeting' }
       ]
     },
 
@@ -361,11 +373,14 @@ window.conversationFlow = {
     },
 
     encerramento: {
+      // Fim do fluxo de pagamento: além de oferecer o atendente, oferece
+      // voltar ao menu principal para o usuário iniciar uma nova atividade.
       scenario: 'Caminho feliz',
       messages: [
         { text: 'Por aqui é só isso. Se quiser falar com um atendente a qualquer momento, é só avisar.' }
       ],
       options: [
+        { label: 'Voltar ao menu principal', next: 'greeting' },
         { label: 'Falar com atendente', next: 'transfer_agent' }
       ],
       final: true
@@ -373,9 +388,14 @@ window.conversationFlow = {
 
     // ── 6. TRANSFERÊNCIA HUMANA ───────────────────────────────────────────
     transfer_agent: {
+      // Estado final de transbordo: oferece voltar ao menu principal caso o
+      // usuário queira iniciar uma nova atividade em vez de aguardar.
       scenario: 'Atendimento humano',
       messages: [
-        { text: 'Vou te transferir para um atendente. Em instantes, alguém continua o atendimento com você.' }
+        { text: 'Vou te transferir para um atendente. Em instantes, alguém dará continuidade ao seu atendimento.' }
+      ],
+      options: [
+        { label: 'Voltar ao menu principal', next: 'greeting' }
       ],
       final: true
     },
