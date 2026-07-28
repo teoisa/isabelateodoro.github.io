@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "prototipo-boleto-whatsapp", "-l", "4173"],
       "port": 4173
+    },
+    {
+      "name": "receitas-salvas",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:/Users/Isabela/Documents/desafio-receitas-salvas", "-l", "4174"],
+      "port": 4174
     }
   ]
 }
