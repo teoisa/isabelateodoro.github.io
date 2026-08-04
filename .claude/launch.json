@@ -12,6 +12,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "C:/Users/Isabela/Documents/desafio-receitas-salvas", "-l", "4174"],
       "port": 4174
+    },
+    {
+      "name": "treino-taf",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:/Users/Isabela/Documents/treino-taf", "-l", "4175"],
+      "port": 4175
     }
   ]
 }
